@@ -1,0 +1,54 @@
+.card{
+    width: 250px;
+    border: 2px solid #FFD374;
+    padding: 24px 18px;
+    &_text{
+
+    }
+}
+
+.bottom{
+    display: flex;
+    justify-content: space-between;
+}
+
+.price{
+    margin-left: 14px;
+    &_wrapper{
+    display: flex;
+    align-items: center;
+}
+}
+.btns_wrapper{
+    display: flex;
+    align-items: center;
+}
+.likeBtn{
+    display: block;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    margin-right: 16px;
+    background: center no-repeat url('../../images/main_page/carousel/like.png');
+    background-color: #ECECEC;
+    &:hover{
+        background-color: #A3D3E7;
+        cursor: pointer;
+    }
+}
+
+.buyBtn{
+    padding: 7px 20px;
+    background-color: #237FA4;
+    color: #ffffff;
+    border: none;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+
+.active{
+    background-color: #237FA4;
+}

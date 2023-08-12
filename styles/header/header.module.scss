@@ -1,0 +1,19 @@
+.general {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  padding: 28px 0;
+}
+
+.navbar {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu {
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+}

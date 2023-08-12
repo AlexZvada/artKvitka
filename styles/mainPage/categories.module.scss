@@ -1,0 +1,18 @@
+.card{
+    width: 230px;
+    height: 24px;
+    padding: 12px 28px;
+    border: 2px solid #FFD374;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    text-decoration: none;
+    color: #02001E;
+    &:hover{
+        cursor: pointer;
+    }
+}
+.text{
+    margin-left: 4px;
+}

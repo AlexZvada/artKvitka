@@ -1,0 +1,41 @@
+.bg{
+    background-color: #F4F4F4;
+}
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+}
+
+.right_side{
+    width: 70%;
+    &_top{
+        display: flex;
+        margin-bottom: 50px;
+    }
+    &_bottom{
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.about{
+    width: 20%;
+}
+
+.info{
+    width: 30%;
+}
+
+.accept{
+    width: 10%;
+}
+
+.sotial{
+    width: 20%;
+}
+
+.title{
+    color: #434343;
+}

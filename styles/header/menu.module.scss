@@ -1,0 +1,26 @@
+.icons {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #fff;
+  &:hover {
+    background-color: #ffd374;
+  }
+}
+.basket {
+  background: center no-repeat url("../../images/header/shop_icon.svg");
+  
+}
+
+.favorites {
+    background: center no-repeat url('../../images/header/favorites_icon.svg');
+}
+
+.account {
+    background: center no-repeat url('../../images/header/account.svg');
+}
+
+.select{
+    border: none;
+}

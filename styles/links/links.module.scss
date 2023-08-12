@@ -1,0 +1,14 @@
+.navLink{
+    text-decoration: none;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.footerLink{
+    display: block;
+    text-decoration: none;
+    &:hover{
+        cursor: pointer;
+    }
+}
