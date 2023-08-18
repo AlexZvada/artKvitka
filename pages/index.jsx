@@ -22,10 +22,22 @@ import deliveryIcon from "../images/main_page/whywe/delivery_icon.jpg";
 
 import A from "../components/links/link";
 import Carousel from "../components/slider/slider";
+import { useRouter } from "next/router";
 
 const Index = () => {
   const [key, setKey] = useState("");
   const [input, setInput] = useState("");
+  const router = useRouter();
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+    if (!data.search) {
+      router.push("/search");
+    }else{
+      router.replace(`/search/?${data.search}`)
+    }
+  };
   const onInputChange = (e) => {
     setInput(e.target.value);
   };
@@ -46,10 +58,10 @@ const Index = () => {
     <Template>
       <div className={styles.search}>
         <Container>
-          <form action="/search" className={styles.form}>
+          <form className={styles.form} onSubmit={submitHandler}>
             <input
               className={styles.input}
-              name="query"
+              name="search"
               type="text"
               value={input}
               onChange={onInputChange}
@@ -146,7 +158,7 @@ const Index = () => {
                 width={450}
                 height={450}
                 className={styles.about_photo}
-                alt=""
+                alt="Artist"
               />
             </div>
             <div className={styles.about_text_wrapper}>

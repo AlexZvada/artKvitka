@@ -247,4 +247,50 @@ export const mainPage = {
   },
 };
 
+export const serachPage = {
+  title: {
+    ru: "Поиск",
+    ua: "Пошук",
+    en: "Search",
+  },
+  path: {
+    ru: "Главная / Поиск",
+    ua: "Головна / Пошук",
+    en: "Main / Search",
+  },
+  form: {
+    placeholder: {
+      ru: "Введите запрос",
+      ua: "Введіть запит",
+      en: "Enter a request",
+    },
+    searchBtn: {
+      ru: "Поиск",
+      ua: "Пошук",
+      en: "Search",
+    },
+  },
+  noResult: {
+    seached: {
+      title: {
+        ru: "По вашему запросу ничего не найдено",
+        ua: "По вашому запиту нічого не знайшлось",
+        en: "Nothing found for your request",
+      },
+      text: {
+        ru: "Попробуйте написать название товара по-другому",
+        ua: "Попробуйте написати назву товару по іншому",
+        en: "Try spelling the product name differently",
+      },
+    },
+    started: {
+      title: {
+        ru: "Введите запрос для поиска",
+        ua: "Введіть запит для пошуку",
+        en: "Enter a query to search",
+      },
+    },
+  },
+};
+
 export default CompLng;

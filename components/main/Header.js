@@ -11,7 +11,6 @@ const Header = () => {
   const [key, setKey] = useState('')
  useEffect(()=>{
     let lang = localStorage.getItem("lang");
-    
     setKey(lang)
  }, [])
   return (
