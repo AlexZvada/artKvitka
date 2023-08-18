@@ -4,15 +4,21 @@ import Image from "next/image";
 import dollar from "../../images/header/dollar.svg";
 import evro from "../../images/header/evro.svg";
 import hryvna from "../../images/header/hryvna.svg";
-import ua from '../../images/header/flag_ua.png'
-import en from '../../images/header/flag_en.png'
+import ua from "../../images/header/flag_ua.png";
+import en from "../../images/header/flag_en.png";
 import { selectLang } from "../../js/selectLang";
 import { selectCurrency } from "../../js/selectCurrency";
 import { useEffect, useState } from "react";
-import Select from "react-select";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
 const Menu = () => {
   const [lang, setLang] = useState("");
   const [currency, setCurrency] = useState("");
+
+  const getOption = (key, options) => {
+    const option = options.find((el) => el.value === key);
+    return option;
+  };
 
   useEffect(() => {
     let currency = localStorage.getItem("cur");
@@ -34,10 +40,16 @@ const Menu = () => {
   const currencyOptions = [
     {
       value: "dollar",
-      label: <Image src={dollar} width={30} height={30} />,
+      label: <Image src={dollar} width={30} height={30} alt="Dollar" />,
     },
-    { value: "evro", label: <Image src={evro} width={30} height={30} /> },
-    { value: "hryvna", label: <Image src={hryvna} width={30} height={30} /> },
+    {
+      value: "evro",
+      label: <Image src={evro} width={30} height={30} alt="Evro" />,
+    },
+    {
+      value: "hryvna",
+      label: <Image src={hryvna} width={30} height={30} alt="Hryvna" />,
+    },
   ];
 
   const langOptions = [
@@ -47,51 +59,27 @@ const Menu = () => {
     },
     {
       value: "ua",
-      label: <Image src={ua} width={30} height={30} />,
+      label: <Image src={ua} width={30} height={30} alt="Ukrainian language" />,
     },
     {
       value: "en",
-      label: (
-        <div>
-          <Image src={en} width={30} height={30} />
-        </div>
-      ),
+      label: <Image src={en} width={30} height={30} alt="English language" />,
     },
   ];
-
-  const getOption = (key, options) => {
-    const option = options.find(el => el.value === key);
-    return option;
-  };
   return (
     <>
-      <Select
+      <Dropdown
+        controlClassName={styles.dropMenu}
         options={currencyOptions}
-        label={currencyOptions.label}
         value={getOption(currency, currencyOptions)}
         onChange={selectCurrency}
-        isSearchable={false}
-        styles={{
-          control: (baseStyles, state) => ({
-            ...baseStyles,
-            border: "none",
-          }),
-        }}
       />
-      <Select
+      <Dropdown
+        controlClassName={styles.dropMenu}
         options={langOptions}
-        label={langOptions.label}
         value={getOption(lang, langOptions)}
         onChange={selectLang}
-        isSearchable={false}
-        styles={{
-          control: (baseStyles, state) => ({
-            ...baseStyles,
-            border: "none",
-          }),
-        }}
       />
-
       <A
         href="/"
         className={`${styles.icons} ${styles.basket}`}

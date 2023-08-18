@@ -1,41 +1,71 @@
-.bg{
-    background-color: #F4F4F4;
+.bg {
+  background-color: #f4f4f4;
 }
-.footer{
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+}
+
+.right_side {
+  width: 60%;
+  &_top {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 24px 0;
+    margin-bottom: 50px;
+  }
+  &_bottom {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
-.right_side{
-    width: 70%;
-    &_top{
-        display: flex;
-        margin-bottom: 50px;
+.about {
+  width: 20%;
+}
+
+.info {
+  width: 20%;
+}
+
+.accept {
+  width: 20%;
+  &_img{
+    margin-right: 8px;
+    &:last-child{
+        margin-right: 0;
     }
-    &_bottom{
-        display: flex;
-        justify-content: space-between;
-    }
+  }
 }
 
-.about{
-    width: 20%;
+.sotial {
+  width: 20%;
+  &_link {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  &:last-child{
+    margin-right: 0;
+  }
+  
+  &_saatchi {
+    background: center no-repeat url('../../images/footer/Saatchi.svg');
+  }
+  &_opensea{
+    background: center no-repeat url('../../images/footer/opensea.svg');
+  }
+  &_rarible{
+    background: center no-repeat url('../../images/footer/rerible.svg');
+  }
+  &_instagram{
+    background: center no-repeat url('../../images/footer/instagram.svg');
+  }
+}
 }
 
-.info{
-    width: 30%;
-}
-
-.accept{
-    width: 10%;
-}
-
-.sotial{
-    width: 20%;
-}
-
-.title{
-    color: #434343;
+.title {
+  color: #434343;
+  margin-bottom: 12px;
 }

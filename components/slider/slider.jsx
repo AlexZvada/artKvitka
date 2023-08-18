@@ -10,67 +10,48 @@ import styles from "../../styles/components/carousel.module.scss";
 import { useEffect, useState } from "react";
 import { mainPage } from "../../library/library";
 
-function NextArrow(props) {
-  const { className, style, onClick } = props;
+function NextArrow({currentSlide, slideCount, ...props}) {
   return (
     <div
-      className={className}
+      {...props}
+      className={`slick-next slick-arrow 
+        ${currentSlide === slideCount - 1 ? " slick-disabled" : ""} ${
+        styles.slick_arrow_right
+      }`}
+      aria-hidden="true"
+      aria-disabled={currentSlide === 0 ? true : false}
+      type="button"
       style={{
-        ...style,
         display: "block",
-        background: "#67AECA",
-        left: "1185px",
+        "background-color": "#67AECA",
+        left: "1154px",
       }}
-      onClick={onClick}
     />
   );
 }
 
-function PrevArrow(props) {
-  const { className, style, onClick } = props;
+function PrevArrow({ currentSlide, slideCount, ...props }) {
   return (
     <div
       {...props}
-      className={className}
+      className={
+        `slick-prev ${currentSlide === 0 ? "slick-disabled" : ""} ${styles.slick_arrow_left}`
+      }
+      aria-hidden="true"
+      aria-disabled={currentSlide === 0 ? true : false}
+      type="button"
       style={{
-        ...style,
         display: "block",
-        background: "#67AECA",
-        left: "-30px",
+        "background-color": "#67AECA",
+        left: "0px",
         zIndex: "9999",
       }}
-      onClick={onClick}
     ></div>
   );
 }
-const getCurrencyImg = (currency) => {
-  switch (currency) {
-    case "dollar":
-      return dollar;
-    case "evro":
-      return evro;
-    case "hryvna":
-      return hryvna;
-    default:
-      break;
-  }
-};
-
-const getPrise = (currency, price) => {
-  let total;
-  switch (currency) {
-    case "dollar":
-      total = price;
-      break;
-    case "evro":
-      total = price * 0.91;
-      break;
-    case "hryvna":
-      total = price * 36.93;
-      break;
-    default:
-      break;
-  }
+const getPrise = (price, course) => {
+  let total = price * course;
+  
   return total;
 };
 
@@ -95,48 +76,99 @@ const Carousel = ({ array }) => {
   };
 
   const [currency, setCurrency] = useState();
+  const [curencyImg, setCurrencyImg] = useState()
   const [key, setKey] = useState("");
+  const [course, setCourse] = useState(null);
+
+  const getCurrencyImg = (currency) => {
+    switch (currency) {
+      case "dollar":
+        setCurrencyImg(dollar);
+        break;
+      case "evro":
+        setCurrencyImg( evro);
+        break;
+      case "hryvna":
+        setCurrencyImg(hryvna);
+        break;
+      default:
+        break;
+    }
+  };
+
+  async function getCurrentCourse(currency) {
+    const fetchData = await fetch(
+      "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json"
+    );
+    const data = await fetchData.json();
+    const evro = data.find((el) => {
+      return el.r030 === 978;
+    });
+    const dollar = data.find((el) => {
+      return el.r030 === 840;
+    });
+    switch (currency) {
+      case "dollar":
+       
+        setCourse(1);
+        break;
+      case "evro":
+        
+        setCourse((dollar.rate / evro.rate).toFixed(3));
+        break;
+      case "hryvna":
+        setCourse(dollar.rate.toFixed(2));
+        break;
+      default:
+        break;
+    }
+  }
 
   useEffect(() => {
     const lang = localStorage.getItem("lang");
     setKey(lang);
     const curency = localStorage.getItem("cur");
     setCurrency(curency);
+    getCurrencyImg(curency); 
+    getCurrentCourse(curency);
   }, []);
   return (
     <Slider {...settings}>
-      {array.map((el) => {
-        return (
-          <>
-            <div className={styles.card} key={el.id}>
-              <Image src={el.img} width={250} height={343} />
-              <p className={styles.card_text}>{el.text}</p>
-              <div className={styles.bottom}>
-                <div className={styles.price_wrapper}>
-                  <Image
-                    src={getCurrencyImg(currency)}
-                    width={30}
-                    height={30}
-                    alt="Currency"
-                  />
-                  <span className={styles.price}>
-                    {getPrise(currency, el.price)}
-                  </span>
-                </div>
-                <div className={styles.btns_wrapper}>
-                  <button
-                    className={styles.likeBtn}
-                    onClick={onClickHandler}
-                  ></button>
-                  <button className={styles.buyBtn}>
-                    {mainPage.cardBtn[key]}
-                  </button>
+        {array.map((el, index) => {
+          return (
+            <div className={styles.card_wrapper} key={index}>
+              <div className={styles.card}>
+                <Image src={el.img} width={250} height={343} alt="image"  className={styles.card_image}/>
+                <p className={styles.card_text}>{el.text}</p>
+                <div className={styles.bottom}>
+                  <div className={styles.price_wrapper}>
+                    {curencyImg && (
+                      <Image
+                        src={curencyImg}
+                        width={30}
+                        height={30}
+                        alt={`${currency}`}
+                        priority={true}
+                      />
+                    )}
+                    <span className={styles.price}>
+                      {getPrise(el.price, course)}
+                    </span>
+                  </div>
+                  <div className={styles.btns_wrapper}>
+                    <button
+                      className={styles.likeBtn}
+                      onClick={onClickHandler}
+                    ></button>
+                    <button className={styles.buyBtn}>
+                      {mainPage.cardBtn[key]}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </>
-        );
-      })}
+          );
+        })}
     </Slider>
   );
 };

@@ -1,3 +1,4 @@
+@import "../variables";
 .search {
   height: 600px;
   background: center no-repeat url("../../images/main_page/main_img.jpg");
@@ -6,24 +7,23 @@
 .form {
   display: block;
   width: 693px;
-  height: 18px;
   margin: 0 auto;
   padding: 293px 0 367px 0;
 }
 
 .input {
   width: 412px;
-  height: 24px;
+  font-size: $standart;
   padding: 12px 18px;
   margin-right: 28px;
 }
 
 .btn {
   width: 192px;
-  height: 50px;
-  padding: 12px 40px;
-  color: #fff;
-  background-color: #237fa4;
+  padding: 13px 40px;
+  font-size: $standart;
+  color: $white;
+  background-color: $blue;
   border: none;
   &:hover {
     cursor: pointer;
@@ -39,12 +39,23 @@
   }
   &_title {
     margin-bottom: 32px;
+    font-size: 34px;
   }
 }
 
 .novelity {
   &_title {
     margin-bottom: 32px;
+    font-size: 34px;
+  }
+  &_wrapper {
+    padding: 0 0 45px 0;
+  }
+}
+.popular {
+  &_title {
+    margin-bottom: 32px;
+    font-size: 34px;
   }
   &_wrapper {
     padding: 0 0 45px 0;
@@ -55,8 +66,11 @@
   padding-bottom: 64px;
   &_title {
     padding: 15px 0;
-    background-color: #ffd374;
+    font-size: 34px;
     margin-bottom: 50px;
+    &_wrapper {
+      background-color: $orange;
+    }
   }
   &_inner {
     display: flex;
@@ -75,6 +89,7 @@
     z-index: 99;
   }
   &_text {
+    font-weight: $regular;
     &_wrapper {
       width: 50%;
     }
@@ -90,6 +105,7 @@
     text-decoration: none;
     color: #000;
     border: 2px solid #000;
+    font-weight: $medium;
   }
 }
 
@@ -97,6 +113,7 @@
   text-align: center;
   margin-top: 150px;
   margin-bottom: 40px;
+  font-size: 34px;
   &_inner {
     display: flex;
     justify-content: space-between;
@@ -111,6 +128,8 @@
     }
     &_title {
       margin-bottom: 32px;
+      font-size: 18px;
+      font-weight: $semibold;
     }
     &_text {
       width: 100%;
@@ -118,6 +137,41 @@
   }
 }
 
-.updates{
-  
+.updates {
+  &_title{
+    padding: 17px 0;
+    font-size: 26px;
+    font-weight: $semibold;
+
+    &_wrapper{
+      background-color: $orange;
+    }
+  }
+
+  &_content{
+    padding: 20px 0 70px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &_text{
+    max-width: 412px;
+    line-height: 24px;
+  }
+
+  &_input{
+    padding: 12px;
+    width: 412px;
+    margin-right: 28px;
+    font-size: 14px;
+    color: #B1B1B1;
+    border: 1px solid $orange;
+  }
+  &_btn{
+    padding: 12px 40px;
+    font-weight: $medium;
+    color: $white;
+    background-color: $blue;
+    border: none;
+  }
 }

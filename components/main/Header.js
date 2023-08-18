@@ -18,13 +18,12 @@ const Header = () => {
     <header>
       <Container>
         <div className={header.general}>
-          <A href={'/'}>
+          <A href={"/"}>
             <Image
               src={logo}
               width={192}
               height={64}
-              alt="Main logo"
-              className=""
+              alt="Artkvitka logo"
             />
           </A>
           <div className={header.navbar}>

@@ -1,6 +1,6 @@
+@import "../variables";
 .card{
-    width: 230px;
-    height: 24px;
+    width: 290px;
     padding: 12px 28px;
     border: 2px solid #FFD374;
     display: flex;
@@ -15,4 +15,5 @@
 }
 .text{
     margin-left: 4px;
+    font-weight: $medium;
 }

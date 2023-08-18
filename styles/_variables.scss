@@ -1,0 +1,63 @@
+$standart: 16px;
+$regular: 400;
+$medium: 500;
+$semibold: 600;
+$bold: 700;
+$blue: #237fa4;
+$light-blue: #a3d3e7;
+$black: #000;
+$white: #fff;
+$top-menu-hovered: #ffd374;
+$orange:#ffd374;
+
+@font-face {
+  font-family: "Monsterrat";
+  src: url("../fonts/Monsterrat/Montserrat-Regular.ttf");
+  font-weight: $regular;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Monsterrat";
+  src: url("../fonts/Monsterrat/Montserrat-Medium.ttf");
+  font-weight: $medium;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Monsterrat";
+  src: url("../fonts/Monsterrat/Montserrat-SemiBold.ttf");
+  font-weight: $semibold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Monsterrat";
+  src: url("../fonts/Monsterrat/Montserrat-Bold.ttf");
+  font-weight: $bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("../fonts/OpenSans/OpenSans_Condensed-Regular.ttf");
+  font-weight: $regular;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("../fonts/OpenSans/OpenSans_Condensed-Medium.ttf");
+  font-weight: $medium;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url("../fonts/OpenSans/OpenSans_Condensed-SemiBold.ttf");
+  font-weight: $semibold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url("../fonts/OpenSans/OpenSans_Condensed-Bold.ttf");
+  font-weight: $bold;
+  font-style: normal;
+}

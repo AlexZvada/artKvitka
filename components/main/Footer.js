@@ -6,6 +6,13 @@ import lib from "../../library/library";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import logo from "../../images/main_logo.jpg";
+import visa from "../../images/footer/visa.svg"
+import mastercard from "../../images/footer/mastercard.svg";
+import binance from "../../images/footer/binance.svg";
+import apay from "../../images/footer/apay.svg";
+import gpay from "../../images/footer/gpay.svg";
+
+
 
 const Footer = () => {
   const [key, setKey] = useState("");
@@ -17,14 +24,8 @@ const Footer = () => {
   return (
     <footer className={styles.bg}>
       <Container>
-        <div className={styles.footer}>
-          <Image
-            src={logo}
-            width={192}
-            height={64}
-            alt="Artkvitka logo"
-            className=""
-          />
+        <div className={styles.wrapper}>
+          <Image src={logo} width={192} height={64} alt="Artkvitka logo" />
           <div className={styles.right_side}>
             <div className={styles.right_side_top}>
               <div className={styles.about}>
@@ -60,9 +61,68 @@ const Footer = () => {
               </div>
               <div className={styles.accept}>
                 <h3 className={styles.title}>{lib.footer.paymentWays[key]}</h3>
+                <div className={styles.accept_inner}>
+                  <Image
+                    className={styles.accept_img}
+                    src={visa}
+                    width={48}
+                    height={"auto"}
+                    alt="Visa logo"
+                  />
+                  <Image
+                    className={styles.accept_img}
+                    src={mastercard}
+                    width={24}
+                    height={"auto"}
+                    alt="Mastercsrd logo"
+                  />
+                  <Image
+                    className={styles.accept_img}
+                    src={binance}
+                    width={19}
+                    height={"auto"}
+                    alt="Binance logo"
+                  />
+                  <Image
+                    className={styles.accept_img}
+                    src={apay}
+                    width={48}
+                    height={"auto"}
+                    alt="Apple pay logo"
+                  />
+                  <Image
+                    className={styles.accept_img}
+                    src={gpay}
+                    width={47}
+                    height={"auto"}
+                    alt="Google pay logo"
+                  />
+                </div>
               </div>
               <div className={styles.sotial}>
                 <h3 className={styles.title}>{lib.footer.sotial[key]}</h3>
+                <div className={styles.sotial_inner}>
+                  <A
+                    href={"https://www.saatchiart.com/artnadi"}
+                    target={"_blank"}
+                    className={`${styles.sotial_link} ${styles.sotial_link_saatchi}`}
+                  />
+                  <A
+                    href={"https://opensea.io/NJwatercolorArt"}
+                    target={"_blank"}
+                    className={`${styles.sotial_link} ${styles.sotial_link_opensea}`}
+                  />
+                  <A
+                    href={"https://rarible.com/njart/owned"}
+                    target={"_blank"}
+                    className={`${styles.sotial_link} ${styles.sotial_link_rarible}`}
+                  />
+                  <A
+                    href={""}
+                    // target={"_blank"}
+                    className={`${styles.sotial_link} ${styles.sotial_link_instagram}`}
+                  />
+                </div>
               </div>
             </div>
             <div className={styles.right_side_bottom}>
