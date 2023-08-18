@@ -30,7 +30,16 @@ const Index = () => {
     setInput(e.target.value);
   };
   useEffect(() => {
-    const lang = localStorage.getItem("lang");
+    let lang = localStorage.getItem("lang");
+    let currency = localStorage.getItem('cur');
+    if (!lang) {
+      lang = 'ua'
+      localStorage.setItem('lang', lang)
+    }
+    if(!currency){
+      currency = 'hryvna';
+      localStorage.setItem('cur', currency)
+    }
     setKey(lang);
   }, []);
   return (
@@ -224,9 +233,12 @@ const Index = () => {
               {mainPage.updates.text[key]}
             </span>
             <form action="">
-              <input type="email"
-              className={styles.updates_input} 
-              name="updates" placeholder={mainPage.updates.placeholder[key]}/>
+              <input
+                type="email"
+                className={styles.updates_input}
+                name="updates"
+                placeholder={mainPage.updates.placeholder[key]}
+              />
               <button type="submit" className={styles.updates_btn}>
                 {mainPage.updates.btn[key]}
               </button>

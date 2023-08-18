@@ -19,21 +19,10 @@ const Menu = () => {
     const option = options.find((el) => el.value === key);
     return option;
   };
-
-  useEffect(() => {
-    let currency = localStorage.getItem("cur");
-    if (!currency) {
-      setCurrency("hruvna");
-      return;
-    }
-    setCurrency(currency);
-  });
   useEffect(() => {
     let lang = localStorage.getItem("lang");
-    if (!lang) {
-      setLang("ua");
-      return;
-    }
+    let currency = localStorage.getItem("cur");
+    setCurrency(currency);
     setLang(lang);
   }, []);
 
