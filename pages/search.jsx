@@ -3,13 +3,15 @@ import { useRouter } from "next/router";
 import Template from "../components/main/Template";
 import { serachPage } from "../library/library";
 import EmptySearch from "../components/search/emptySearch";
+import ProductsList from "../components/search/ProductsList";
 import Container from "../components/main/Layout";
-import styles from '../styles/searchPage/search.module.scss'
+import styles from '../styles/searchPage/search.module.scss';
+import cards from '../js/cards'
 
 const Search = () => {
   const [key, setKey] = useState("");
-  const [item, setItem] = useState(null);
-  const [searched, setSearched] = useState(false);
+  const [items, setItems] = useState(true);
+  const [isSearched, setIsSearched] = useState(false);
   const router = useRouter();
 
   const getEmpty = (param)=>{
@@ -27,7 +29,8 @@ const Search = () => {
     let lang = localStorage.getItem("lang");
     setKey(lang);
     if (router.asPath.split("?")[1]) {
-      setSearched(true);
+      setIsSearched(true);
+      // setItems(cards);
       // console.log();
       // const fetchData = await fetch('...', {
 
@@ -47,7 +50,7 @@ const Search = () => {
           <h1 className={styles.title}>{serachPage.title[key]}</h1>
           <span className={styles.path}>{serachPage.path[key]}</span>
           <div className={styles.main_inner}>
-            <form className={styles.form} onSubmit={"submitHandler"}>
+            <form className={styles.form} onSubmit={() => {}}>
               <input
                 className={styles.input}
                 name="search"
@@ -60,11 +63,11 @@ const Search = () => {
                 {serachPage.form.searchBtn[key]}
               </button>
             </form>
-            {item
-              ? item.map((el) => {
-                  return el;
-                })
-              : getEmpty(searched)}
+            {items ? (
+              <ProductsList lang={key} data={cards} />
+            ) : (
+              getEmpty(isSearched)
+            )}
           </div>
         </Container>
       </div>

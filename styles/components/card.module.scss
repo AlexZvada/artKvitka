@@ -1,0 +1,70 @@
+@import '../variables';
+.card {
+  width: 95%;
+  border: 2px solid #ffd374;
+  padding: 24px 18px;
+  &_image{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    margin-bottom: 16px;
+  }
+  &_text{
+    margin-bottom: 16px;
+  }
+}
+
+.catalog_card{
+  width: 33%;
+  margin-bottom: 20px;
+  &_wrapper{
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.price {
+  margin-left: 14px;
+  &_wrapper {
+    display: flex;
+    align-items: center;
+  }
+}
+.btns_wrapper {
+  display: flex;
+  align-items: center;
+}
+.likeBtn {
+  display: block;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  margin-right: 16px;
+  background: center url("../../images/main_page/carousel/heart_black.png");
+  background-color: #ececec;
+  &:hover {
+    background-color: #a3d3e7;
+    cursor: pointer;
+  }
+}
+
+.buyBtn {
+  padding: 7px 20px;
+  background-color: #237fa4;
+  color: #ffffff;
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.active {
+  background: center url("../../images/main_page/carousel/heart_white.png");
+  background-color: #237fa4;
+}

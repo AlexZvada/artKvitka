@@ -1,0 +1,69 @@
+@import "../variables";
+
+.price{
+  &_from{
+    margin-right: 75px;
+  }
+  &_input{
+  width: 90px;
+}
+&_wrapper{
+  margin-bottom: 30px;
+}
+}
+
+.title {
+  font-size: 26px;
+  font-weight: $semibold;
+  margin-bottom: 20px;
+}
+.subtitle {
+  font-size: 22px;
+  font-weight: $medium;
+  margin-bottom: 10px;
+  &_wrapper{
+    margin-bottom: 10px;
+  }
+}
+
+.checkbox {
+  display: block;
+  margin-bottom: 8px;
+  height: 24px;
+  font-size: 16px;
+  line-height: 24px;
+  &:last-child {
+    margin-bottom: 30px;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+.square {
+  background: center no-repeat url("../../images/filter_menu/square.svg");
+}
+.vertical {
+  background: center no-repeat url("../../images/filter_menu/vertical.svg");
+}
+.horisontal {
+  background: center no-repeat url("../../images/filter_menu/horisontal.svg");
+}
+.panoram {
+  background: center no-repeat url("../../images/filter_menu/panorama.svg");
+}
+
+.orientation {
+  &_img {
+    display: inline-block;
+    width: 34px;
+    height: 24px;
+    background-color: #efefef;
+    border-radius: 2px;
+  }
+}
+
+
+.more{
+  cursor: pointer;
+  text-decoration: underline;
+}

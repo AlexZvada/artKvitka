@@ -1,6 +1,6 @@
 import A from "../links/link";
 import Image from "next/image";
-import logo from "../../images/main_logo.jpg";
+import {logo} from "../../images/index";
 import Container from "./Layout";
 import header from "../../styles/header/header.module.scss";
 import link from "../../styles/links/links.module.scss";

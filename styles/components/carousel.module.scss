@@ -1,84 +1,24 @@
-@import '../variables';
-.card {
-  width: 95%;
-  border: 2px solid #ffd374;
-  padding: 24px 18px;
-  &_image{
-    margin: 0 auto;
-    margin-bottom: 16px;
-  }
-  &_text{
-    margin-bottom: 16px;
-  }
-}
-
-.bottom {
-  display: flex;
-  justify-content: space-between;
-}
-
-.price {
-  margin-left: 14px;
-  &_wrapper {
-    display: flex;
-    align-items: center;
-  }
-}
-.btns_wrapper {
-  display: flex;
-  align-items: center;
-}
-.likeBtn {
-  display: block;
-  width: 32px;
-  height: 32px;
-  border: none;
-  border-radius: 50%;
-  margin-right: 16px;
-  background: center url("../../images/main_page/carousel/heart_black.png");
-  background-color: #ececec;
-  &:hover {
-    background-color: #a3d3e7;
-    cursor: pointer;
-  }
-}
-
-.buyBtn {
-  padding: 7px 20px;
-  background-color: #237fa4;
-  color: #ffffff;
-  border: none;
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.active {
-  background: center url("../../images/main_page/carousel/heart_white.png");
-  background-color: #237fa4;
-}
-
 .slick_arrow {
   &_left {
-    background-image: url("../../images/main_page/carousel/arrow_left.png");
-    width: 32px;
-    height: 32px;
+    background-image: url("../../images/main_page/carousel/arrow_left.png") !important;
+    width: 32px !important;
+    height: 32px !important;
     &:hover {
-      background-image: url("../../images/main_page/carousel/arrow_left.png");
+      background-image: url("../../images/main_page/carousel/arrow_left.png") !important;
     }
     &::before {
-      content: "";
+      content: "" !important;
     }
   }
   &_right {
-    background-image: url("../../images/main_page/carousel/arrow_right.png");
-    width: 32px;
-    height: 32px;
+    background-image: url("../../images/main_page/carousel/arrow_right.png") !important;
+    width: 32px !important;
+    height: 32px !important;
     &:hover {
-      background-image: url("../../images/main_page/carousel/arrow_right.png");
+      background-image: url("../../images/main_page/carousel/arrow_right.png") !important;
     }
     &::before {
-      content: "";
+      content: "" !important;
     }
   }
 }

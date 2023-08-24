@@ -5,12 +5,14 @@ import links from '../../styles/links/links.module.scss'
 import lib from "../../library/library";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import logo from "../../images/main_logo.jpg";
-import visa from "../../images/footer/visa.svg"
-import mastercard from "../../images/footer/mastercard.svg";
-import binance from "../../images/footer/binance.svg";
-import apay from "../../images/footer/apay.svg";
-import gpay from "../../images/footer/gpay.svg";
+import {
+  logo,
+  visa,
+  mastercard,
+  binance,
+  apay,
+  gpay,
+} from "../../images/index";
 
 
 

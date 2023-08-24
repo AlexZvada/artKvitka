@@ -7,18 +7,7 @@ import categories from "../styles/mainPage/categories.module.scss";
 import cards from "../js/cards";
 import Container from "../components/main/Layout";
 
-import paint from "../images/main_page/categories/paint.png";
-import poster from "../images/main_page/categories/poster.png";
-import postcard from "../images/main_page/categories/postcard.png";
-import cup from "../images/main_page/categories/cup.png";
-import shirt from "../images/main_page/categories/shirt.png";
-import bag from "../images/main_page/categories/bag.png";
-import nft from "../images/main_page/categories/nft.png";
-import digital from "../images/main_page/categories/digital.png";
-import artist from "../images/main_page/artist.jpg";
-import paintIcon from "../images/main_page/whywe/paintings_icon.jpg";
-import qualityIcon from "../images/main_page/whywe/quality_icon.jpg";
-import deliveryIcon from "../images/main_page/whywe/delivery_icon.jpg";
+import {paint, poster, postcard, cup, shirt, bag, nft, digital, artist, paintIcon, qualityIcon, deliveryIcon} from '../images/index'
 
 import A from "../components/links/link";
 import Carousel from "../components/slider/slider";
@@ -42,6 +31,7 @@ const Index = () => {
     setInput(e.target.value);
   };
   useEffect(() => {
+    // console.log(mapFnc(cards));
     let lang = localStorage.getItem("lang");
     let currency = localStorage.getItem('cur');
     if (!lang) {
