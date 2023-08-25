@@ -31,7 +31,6 @@ const Index = () => {
     setInput(e.target.value);
   };
   useEffect(() => {
-    // console.log(mapFnc(cards));
     let lang = localStorage.getItem("lang");
     let currency = localStorage.getItem('cur');
     if (!lang) {

@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Dropdown from "react-dropdown";
 import { itemListL } from "../../library/library";
 import styles from "../../styles/components/itemList.module.scss";
 import sort from "../../js/sortItems";
-import Card from "../../components/cards/card";
 import Pagination from "./pagination";
 import Products from "./products";
+import { SearchContext } from "../../pages/search";
 
-const ItemList = ({ lang, data }) => {
-  const key = lang;
+
+
+const ItemList = ({data}) => {
+  const { key } = useContext(SearchContext);
   const [sortedBy, setSortedBy] = useState("recomended");
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -62,20 +64,22 @@ const ItemList = ({ lang, data }) => {
     },
   ];
 
-  const lastProductIndex = currentPage * productsPerPage;
-  const firstProductIndex = lastProductIndex - productsPerPage;
-  const currentProduct = products.slice(firstProductIndex, lastProductIndex)
+  // const lastProductIndex = currentPage * productsPerPage;
+  // const firstProductIndex = lastProductIndex - productsPerPage;
+  // const currentProduct = products.slice(firstProductIndex, lastProductIndex)
 
   const navigate = (number) => setCurrentPage(number);
 
   useEffect(() => {
     setProducts(data);
+    
+    console.log(data);
   }, []);
   useEffect(() => {
-    const sorted = sort(data, sortedBy);
-    setProducts(sorted);
+    // const sorted = sort(data, sortedBy);
+    // setProducts(sorted);
     setCurrentPage(1)
-  }, [sortedBy]);
+  }, [sortedBy, data]);
   return (
     <div>
       <div className={styles.dropMenu_wrapper}>
@@ -85,14 +89,14 @@ const ItemList = ({ lang, data }) => {
           value={getOption(sortedBy, sortOptions)}
           onChange={selectSortBy}
         />
-      </div>
+      {/* </div>
       <div className={styles.list}>
         <Products products={currentProduct} />
         <Pagination
           productsPerPage={productsPerPage}
           totalProducts={products.length}
           navigate={navigate}
-        />
+        /> */}
       </div>
     </div>
   );

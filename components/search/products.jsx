@@ -6,7 +6,7 @@ const Products = ({ products }) => {
   return (
     <div className={styles.catalog_card_wrapper}>
       {products.map((el, i) => (
-        <div className={styles.catalog_card}>
+        <div className={styles.catalog_card} key={i}>
           <Card curencyImg={dollar} el={el} text={"buy"} />
         </div>
       ))}

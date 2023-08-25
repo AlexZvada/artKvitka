@@ -1,72 +1,98 @@
+import { useEffect, useState } from 'react';
 import {filterBar} from '../../library/library'
 import styles from '../../styles/searchPage/filterMenu.module.scss'
-export const MainCheckbox = ({lang})=>{
-    const key = lang;
-    return (
-      <div>
-        <h2 className={styles.title}>{filterBar.title[key]}</h2>
-        <div className={styles.subtitle_wrapper}>
-          <h3 className={styles.subtitle}>{filterBar.price.title[key]}</h3>
-          <span className={styles.price_from}>{filterBar.price.from[key]}</span>
-          <span className={styles.price_to}>{filterBar.price.to[key]}</span>
-        </div>
-        <div className={styles.price_wrapper}>
-          <input
-            type="number"
-            name="priceFrom"
-            placeholder="0"
-            className={styles.price_input}
-          />
-          <span>-</span>
-          <input
-            type="number"
-            name="priceTo"
-            placeholder="10 000"
-            className={styles.price_input}
-          />
-        </div>
-        <form className={styles.form}>
-          <h3 className={styles.subtitle}>{filterBar.categories.title[key]}</h3>
-          <label className={styles.checkbox}>
-            <input type="checkbox" name="categories" value="paintings" />
-            {filterBar.categories.paintins[key]}
-          </label>
-          <label className={styles.checkbox}>
-            <input type="checkbox" name="categories" value="posters" />
-            {filterBar.categories.posters[key]}
-          </label>
-          <label className={styles.checkbox}>
-            <input type="checkbox" name="categories" value="postcards" />
-            {filterBar.categories.postcards[key]}
-          </label>
-          <label className={styles.checkbox}>
-            <input type="checkbox" name="categories" value="caps" />
-            {filterBar.categories.cups[key]}
-          </label>
-          <label className={styles.checkbox}>
-            <input type="checkbox" name="categories" value="t-shords" />
-            {filterBar.categories.tShorts[key]}
-          </label>
-          <label className={styles.checkbox}>
-            <input type="checkbox" name="categories" value="bags" />
-            {filterBar.categories.bags[key]}
-          </label>
-          <label className={styles.checkbox}>
-            <input type="checkbox" name="categories" value="paintings" />
-            {filterBar.categories.title[key]}
-          </label>
-          <label className={styles.checkbox}>
-            <input type="checkbox" name="categories" value="nft" />
-            NFT
-          </label>
-          <label className={styles.checkbox}>
-            <input type="checkbox" name="categories" value="digital" />
-            {filterBar.categories.digital[key]}
-          </label>
-        </form>
+
+  let arrayOfFilters = [];
+
+export const MainCheckbox = ({ lang, data }) => {
+  const key = lang
+  const [filterParams, setFilterPasams] = useState([]);
+
+  // const sortData(data, params)=>{
+
+
+  // }
+  const onChange = (e) => {
+    if (e.target.checked) {
+    arrayOfFilters.push(e.target.value);
+    let newArray = [...arrayOfFilters]
+    setFilterPasams(newArray);
+    }
+    if (!e.target.checked) {
+     let newArray = arrayOfFilters.filter((el) => el !== e.target.value);
+     
+    setFilterPasams(newArray);
+    }
+  };
+  useEffect(()=>{
+    setFilterPasams(filterParams)
+  },[filterParams])
+  return (
+    <div>
+      
+      <h2 className={styles.title}>{filterBar.title[key]}</h2>
+      <div className={styles.subtitle_wrapper}>
+        <h3 className={styles.subtitle}>{filterBar.price.title[key]}</h3>
+        <span className={styles.price_from}>{filterBar.price.from[key]}</span>
+        <span className={styles.price_to}>{filterBar.price.to[key]}</span>
       </div>
-    );
-}
+      <div className={styles.price_wrapper}>
+        <input
+          type="number"
+          name="priceFrom"
+          placeholder="0"
+          className={styles.price_input}
+        />
+        <span>-</span>
+        <input
+          type="number"
+          name="priceTo"
+          placeholder="10 000"
+          className={styles.price_input}
+        />
+      </div>
+      <form className={styles.form} onClick={onChange}>
+        <h3 className={styles.subtitle}>{filterBar.categories.title[key]}</h3>
+        <label className={styles.checkbox}>
+          <input type="checkbox" name="categories" value="paintings" />
+          {filterBar.categories.paintins[key]}
+        </label>
+        <label className={styles.checkbox}>
+          <input type="checkbox" name="categories" value="posters" />
+          {filterBar.categories.posters[key]}
+        </label>
+        <label className={styles.checkbox}>
+          <input type="checkbox" name="categories" value="postcards" />
+          {filterBar.categories.postcards[key]}
+        </label>
+        <label className={styles.checkbox}>
+          <input type="checkbox" name="categories" value="caps" />
+          {filterBar.categories.cups[key]}
+        </label>
+        <label className={styles.checkbox}>
+          <input type="checkbox" name="categories" value="t-shords" />
+          {filterBar.categories.tShorts[key]}
+        </label>
+        <label className={styles.checkbox}>
+          <input type="checkbox" name="categories" value="bags" />
+          {filterBar.categories.bags[key]}
+        </label>
+        <label className={styles.checkbox}>
+          <input type="checkbox" name="categories" value="paintings" />
+          {filterBar.categories.title[key]}
+        </label>
+        <label className={styles.checkbox}>
+          <input type="checkbox" name="categories" value="nft" />
+          NFT
+        </label>
+        <label className={styles.checkbox}>
+          <input type="checkbox" name="categories" value="digital" />
+          {filterBar.categories.digital[key]}
+        </label>
+      </form>
+    </div>
+  );
+};
 export const ExpandedCheckbox = ({lang, onClick}) => {
     const key = lang;
   return (

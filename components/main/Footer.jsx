@@ -1,9 +1,9 @@
 import Container from "./Layout";
 import A from "../links/link";
-import styles from '../../styles/footer/footer.module.scss';
-import links from '../../styles/links/links.module.scss'
+import styles from "../../styles/footer/footer.module.scss";
+import links from "../../styles/links/links.module.scss";
 import lib from "../../library/library";
-import { useState, useEffect } from "react";
+import {  useState, useEffect } from "react";
 import Image from "next/image";
 import {
   logo,
@@ -13,16 +13,14 @@ import {
   apay,
   gpay,
 } from "../../images/index";
-
-
+import { MainOptions } from "./Template";
 
 const Footer = () => {
-  const [key, setKey] = useState("");
-  useEffect(() => {
-    let lang = localStorage.getItem("lang");
-
-    setKey(lang);
-  }, []);
+   const [key, setKey] = useState("");
+   useEffect(() => {
+     let lang = localStorage.getItem("lang");
+     setKey(lang);
+   }, []);
   return (
     <footer className={styles.bg}>
       <Container>

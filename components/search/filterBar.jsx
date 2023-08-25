@@ -1,20 +1,26 @@
-import {useState } from "react";
+import { useContext, useState } from "react";
 import { filterBar } from "../../library/library";
 import { MainCheckbox, ExpandedCheckbox } from "./checkbox";
-import styles from '../../styles/searchPage/filterMenu.module.scss'
-const FilterBar = ({lang}) => {
-  const key = lang;
-  const [isOpen, setIsOpen] = useState(false);
-  // const [cur, setCur] = useState()
+import styles from "../../styles/searchPage/filterMenu.module.scss";
+import { SearchContext } from "../../pages/search";
 
-  const onClickHandler= ()=>{
-    setIsOpen(!isOpen)
-  }
+const FilterBar = ({items}) => {
+  const { key } = useContext(SearchContext);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const onClickHandler = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <>
-      <MainCheckbox lang={key} />
+      <MainCheckbox lang={key} data={items}/>
       {isOpen ? (
-        <ExpandedCheckbox lang={key} onClick={onClickHandler} />
+        <ExpandedCheckbox
+          lang={key}
+          onClick={onClickHandler}
+          data={items}
+          filterData={filterData}
+        />
       ) : (
         <span onClick={onClickHandler} className={styles.more}>
           {filterBar.more[key]}

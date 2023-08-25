@@ -1,22 +1,29 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "../../styles/searchPage/search.module.scss";
-import cardList from "../../js/cards";
 import FilterBar from "./filterBar";
-import ItemList from "./itemList"
-// import {se} from '../../library/library'
-const Items= ({lang, data}) => {
-  const [list, setList] = useState();
-  useEffect(() => {
-    setList(cardList);
-  }, []);
+import ItemList from "./itemList";
+import { SearchContext } from "../../pages/search";
+
+
+const ProductsList= () => {
+  const {data} = useContext(SearchContext)
+  const [items, setItems]= useState([])
+  useEffect(()=>{
+    setItems(data)
+    console.log(items);
+  },[])
   return <div className={styles.finded}>
     <div className={styles.finded_filterbar}>
-        <FilterBar lang={lang}/>
+        <FilterBar
+        items={items}
+        />
     </div>
     <div className={styles.finded_list}>
-      <ItemList lang={lang} data={data}></ItemList>
+      <ItemList
+        items={items}
+      />
     </div>
   </div>;
 };
 
-export default Items;
+export default ProductsList;
