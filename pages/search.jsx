@@ -47,7 +47,7 @@ const Search = () => {
       // if (data) {
       //   setItem(data);
       // }
-    } else return;
+    }
   }, []);
   return (
     <Template>

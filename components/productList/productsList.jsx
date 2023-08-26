@@ -2,17 +2,16 @@ import { useEffect, useState } from "react";
 import styles from "../../styles/components/product_list/productList.module.scss";
 import FilterBar from "./filterBar";
 import ItemList from "./itemList";
-import { SearchContext } from "../../pages/search";
 
 
 const ProductsList= ({data}) => {
-  const [items, setItems] = useState(data);
+  const [items, setItems] = useState([]);
  function setDataHandler(a){
     setItems(a)
   }
-  // useEffect(() => {
-  //   // setItems(items);
-  // }, [items]);
+  useEffect(() => {
+    setItems(data);
+  }, []);
   return (
     <div className={styles.finded}>
       <div className={styles.finded_filterbar}>

@@ -8,12 +8,12 @@ export const MainCheckbox = (props) => {
   const dataToSort = [...data];
   const key = lang;
   const [filterParams, setFilterParams] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
 
   const filterData = (data, params) => {
     let filteredData = [];
     if (!params[0]) {
-      return data;
+      filteredData = data;
+      return filteredData
     }
     params.forEach((param) => {
       data.forEach((item) => {
@@ -39,7 +39,7 @@ export const MainCheckbox = (props) => {
   useEffect(() => {
     let a = filterData(dataToSort, filterParams);
     setData(a);
-  }, [filterParams]);
+  }, [filterParams, data]);
   return (
     <div>
       <h2 className={styles.title}>{filterBar.title[key]}</h2>
