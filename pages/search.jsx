@@ -12,7 +12,7 @@ export const SearchContext = createContext(null);
 
 const Search = () => {
   const [key, setKey] = useState("");
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(null);
   const [itemsToShow, setItemsToShow] = useState([]);
   const [isSearched, setIsSearched] = useState(false);
   const router = useRouter();
@@ -31,7 +31,6 @@ const Search = () => {
   useEffect(() => {
     let lang = localStorage.getItem("lang");
     setKey(lang);
-    setItems(cards);
     if (router.asPath.split("?")[1]) {
       setIsSearched(true);
       setItems(cards);
@@ -56,7 +55,7 @@ const Search = () => {
           <h1 className={styles.title}>{serachPage.title[key]}</h1>
           <span className={styles.path}>{serachPage.path[key]}</span>
           <div className={styles.main_inner}>
-            <form className={styles.form} onSubmit={() => {}}>
+            <form className={styles.form} onSubmit={(e) => {e.pteventDefault(); setItems(cards)}}>
               <input
                 className={styles.input}
                 name="search"
@@ -69,12 +68,9 @@ const Search = () => {
                 {serachPage.form.searchBtn[key]}
               </button>
             </form>
-
             {items ? (
-              <SearchContext.Provider
-                value={{ key: key }}
-              >
-                <ProductsList data={items}/>
+              <SearchContext.Provider value={{ key: key }}>
+                <ProductsList data={items} />
               </SearchContext.Provider>
             ) : (
               getEmpty(isSearched)
