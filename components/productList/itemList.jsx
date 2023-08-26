@@ -94,7 +94,6 @@ const ItemList = ({data}) => {
           productsPerPage={productsPerPage}
           totalProducts={products.length}
           navigate={navigate}
-          href="#start"
         />
       </div>
     </div>
