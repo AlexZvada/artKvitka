@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import Dropdown from "react-dropdown";
 import { itemListL } from "../../library/library";
-import styles from "../../styles/components/itemList.module.scss";
+import styles from "../../styles/components/product_list/itemList.module.scss";
 import sort from "../../js/sortItems";
 import Pagination from "./pagination";
 import Products from "./products";
@@ -77,9 +77,9 @@ const ItemList = ({data}) => {
     const sorted = sort(data, sortedBy);
     setProducts(sorted);
     setCurrentPage(1)
-  }, [sortedBy]);
+  }, [sortedBy, data]);
   return (
-    <div>
+    <div id="start">
       <div className={styles.dropMenu_wrapper}>
         <Dropdown
           controlClassName={styles.dropMenu}
@@ -94,6 +94,7 @@ const ItemList = ({data}) => {
           productsPerPage={productsPerPage}
           totalProducts={products.length}
           navigate={navigate}
+          href="#start"
         />
       </div>
     </div>

@@ -1,0 +1,33 @@
+@import '../../variables';
+
+
+.dropMenu{
+    width: 250px;
+    height: 38px;
+    &_wrapper{
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.list{
+    padding: 15px 0;
+}
+
+.nav{
+    display: flex;
+    max-width: 150px;
+    margin: 0 auto;
+
+    &_btn{
+        text-decoration: underline;
+        margin: 0 10px;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+
+.active{
+    text-decoration: none;
+}

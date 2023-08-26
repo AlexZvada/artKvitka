@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { filterBar } from "../../library/library";
-import styles from "../../styles/searchPage/filterMenu.module.scss";
+import styles from "../../styles/components/product_list/filterMenu.module.scss";
 
 let arrayOfFilters = [];
 export const MainCheckbox = (props) => {
   const { lang, data, setData }= props
-  console.log(props);
   const dataToSort = [...data];
   const key = lang;
   const [filterParams, setFilterParams] = useState([]);

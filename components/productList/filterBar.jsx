@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { filterBar } from "../../library/library";
 import { MainCheckbox, ExpandedCheckbox } from "./checkbox";
-import styles from "../../styles/searchPage/filterMenu.module.scss";
+import styles from "../../styles/components/product_list/filterMenu.module.scss";
 import { SearchContext } from "../../pages/search";
 
 const FilterBar = (props) => {
@@ -12,9 +12,8 @@ const FilterBar = (props) => {
   const onClickHandler = () => {
     setIsOpen(!isOpen);
   };
-  useEffect(() => {
-    console.log(props);
-  }, []);
+  // useEffect(() => {
+  // }, []);
   return (
     <>
       <MainCheckbox lang={key} data={data} setData={changeData} />

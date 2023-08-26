@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "../../styles/searchPage/search.module.scss";
+import styles from "../../styles/components/product_list/productList.module.scss";
 import FilterBar from "./filterBar";
 import ItemList from "./itemList";
 import { SearchContext } from "../../pages/search";
@@ -10,10 +10,9 @@ const ProductsList= ({data}) => {
  function setDataHandler(a){
     setItems(a)
   }
-  useEffect(() => {
-    // setItems(items);
-    console.log(items);
-  }, [items]);
+  // useEffect(() => {
+  //   // setItems(items);
+  // }, [items]);
   return (
     <div className={styles.finded}>
       <div className={styles.finded_filterbar}>

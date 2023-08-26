@@ -1,4 +1,4 @@
-@import "../variables";
+@import "../../variables";
 
 .price{
   &_from{
@@ -40,16 +40,16 @@
   }
 }
 .square {
-  background: center no-repeat url("../../images/filter_menu/square.svg");
+  background: center no-repeat url("../../../images/filter_menu/square.svg");
 }
 .vertical {
-  background: center no-repeat url("../../images/filter_menu/vertical.svg");
+  background: center no-repeat url("../../../images/filter_menu/vertical.svg");
 }
 .horisontal {
-  background: center no-repeat url("../../images/filter_menu/horisontal.svg");
+  background: center no-repeat url("../../../images/filter_menu/horisontal.svg");
 }
 .panoram {
-  background: center no-repeat url("../../images/filter_menu/panorama.svg");
+  background: center no-repeat url("../../../images/filter_menu/panorama.svg");
 }
 
 .orientation {
