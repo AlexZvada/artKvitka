@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Template from "../components/main/Template";
 import { serachPage } from "../library/library";
 import EmptySearch from "../components/search/emptySearch";
-import ProductsList from "../components/search/ProductsList";
+import ProductsList from "../components/productList/productsList";
 import Container from "../components/main/Layout";
 import styles from "../styles/searchPage/search.module.scss";
 import cards from "../js/cards";

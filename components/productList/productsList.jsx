@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../../styles/searchPage/search.module.scss";
 import FilterBar from "./filterBar";
 import ItemList from "./itemList";
