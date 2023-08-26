@@ -1,25 +1,29 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { filterBar } from "../../library/library";
 import { MainCheckbox, ExpandedCheckbox } from "./checkbox";
 import styles from "../../styles/searchPage/filterMenu.module.scss";
 import { SearchContext } from "../../pages/search";
 
-const FilterBar = ({items}) => {
+const FilterBar = (props) => {
+  const { data, changeData } = props;
   const { key } = useContext(SearchContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const onClickHandler = () => {
     setIsOpen(!isOpen);
   };
+  useEffect(() => {
+    console.log(props);
+  }, []);
   return (
     <>
-      <MainCheckbox lang={key} data={items}/>
+      <MainCheckbox lang={key} data={data} setData={changeData} />
       {isOpen ? (
         <ExpandedCheckbox
           lang={key}
           onClick={onClickHandler}
-          data={items}
-          filterData={filterData}
+          data={data}
+          setData={changeData}
         />
       ) : (
         <span onClick={onClickHandler} className={styles.more}>

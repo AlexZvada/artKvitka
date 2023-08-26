@@ -1,35 +1,48 @@
-import { useEffect, useState } from 'react';
-import {filterBar} from '../../library/library'
-import styles from '../../styles/searchPage/filterMenu.module.scss'
+import { useEffect, useState } from "react";
+import { filterBar } from "../../library/library";
+import styles from "../../styles/searchPage/filterMenu.module.scss";
 
-  let arrayOfFilters = [];
+let arrayOfFilters = [];
+export const MainCheckbox = (props) => {
+  const { lang, data, setData }= props
+  console.log(props);
+  const dataToSort = [...data];
+  const key = lang;
+  const [filterParams, setFilterParams] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
 
-export const MainCheckbox = ({ lang, data }) => {
-  const key = lang
-  const [filterParams, setFilterPasams] = useState([]);
+  const filterData = (data, params) => {
+    let filteredData = [];
+    if (!params[0]) {
+      return data;
+    }
+    params.forEach((param) => {
+      data.forEach((item) => {
+        if (param === item.category) {
+          filteredData.push(item);
+        }
+      });
+    });
+    return filteredData;
+  };
 
-  // const sortData(data, params)=>{
-
-
-  // }
   const onChange = (e) => {
     if (e.target.checked) {
-    arrayOfFilters.push(e.target.value);
-    let newArray = [...arrayOfFilters]
-    setFilterPasams(newArray);
+      arrayOfFilters.push(e.target.value);
+      let newArray = [...arrayOfFilters];
+      setFilterParams(newArray);
     }
     if (!e.target.checked) {
-     let newArray = arrayOfFilters.filter((el) => el !== e.target.value);
-     
-    setFilterPasams(newArray);
+      arrayOfFilters = arrayOfFilters.filter((el) => el !== e.target.value);
+      setFilterParams(arrayOfFilters);
     }
   };
-  useEffect(()=>{
-    setFilterPasams(filterParams)
-  },[filterParams])
+  useEffect(() => {
+    let a = filterData(dataToSort, filterParams);
+    setData(a);
+  }, [filterParams]);
   return (
     <div>
-      
       <h2 className={styles.title}>{filterBar.title[key]}</h2>
       <div className={styles.subtitle_wrapper}>
         <h3 className={styles.subtitle}>{filterBar.price.title[key]}</h3>
@@ -70,16 +83,12 @@ export const MainCheckbox = ({ lang, data }) => {
           {filterBar.categories.cups[key]}
         </label>
         <label className={styles.checkbox}>
-          <input type="checkbox" name="categories" value="t-shords" />
+          <input type="checkbox" name="categories" value="t-shorts" />
           {filterBar.categories.tShorts[key]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="categories" value="bags" />
           {filterBar.categories.bags[key]}
-        </label>
-        <label className={styles.checkbox}>
-          <input type="checkbox" name="categories" value="paintings" />
-          {filterBar.categories.title[key]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="categories" value="nft" />
@@ -93,8 +102,8 @@ export const MainCheckbox = ({ lang, data }) => {
     </div>
   );
 };
-export const ExpandedCheckbox = ({lang, onClick}) => {
-    const key = lang;
+export const ExpandedCheckbox = ({ lang, onClick }) => {
+  const key = lang;
   return (
     <div className={styles.form_wrapper}>
       <form className={styles.form}>
@@ -228,17 +237,23 @@ export const ExpandedCheckbox = ({lang, onClick}) => {
         <label className={styles.checkbox}>
           <input type="checkbox" name="orientation" value="vertical" />
           {filterBar.orientation.vertical[key]}
-          <span className={`${styles.orientation_img} ${styles.vertical}`}></span>
+          <span
+            className={`${styles.orientation_img} ${styles.vertical}`}
+          ></span>
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="orientation" value="horisontal" />
           {filterBar.orientation.horisontal[key]}{" "}
-          <span className={`${styles.orientation_img} ${styles.horisontal}`}></span>
+          <span
+            className={`${styles.orientation_img} ${styles.horisontal}`}
+          ></span>
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="orientation" value="panoram" />
           {filterBar.orientation.panoram[key]}{" "}
-          <span className={`${styles.orientation_img} ${styles.panoram}`}></span>
+          <span
+            className={`${styles.orientation_img} ${styles.panoram}`}
+          ></span>
         </label>
       </form>
       <form className={styles.form}>
@@ -260,7 +275,9 @@ export const ExpandedCheckbox = ({lang, onClick}) => {
           {filterBar.size.extraLarge[key]}
         </label>
       </form>
-      <span className={styles.more} onClick={onClick}>{filterBar.less[key]}</span>
+      <span className={styles.more} onClick={onClick}>
+        {filterBar.less[key]}
+      </span>
     </div>
   );
 };

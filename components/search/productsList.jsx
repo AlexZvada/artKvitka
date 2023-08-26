@@ -5,25 +5,25 @@ import ItemList from "./itemList";
 import { SearchContext } from "../../pages/search";
 
 
-const ProductsList= () => {
-  const {data} = useContext(SearchContext)
-  const [items, setItems]= useState([])
-  useEffect(()=>{
-    setItems(data)
+const ProductsList= ({data}) => {
+  const [items, setItems] = useState(data);
+ function setDataHandler(a){
+    setItems(a)
+  }
+  useEffect(() => {
+    // setItems(items);
     console.log(items);
-  },[])
-  return <div className={styles.finded}>
-    <div className={styles.finded_filterbar}>
-        <FilterBar
-        items={items}
-        />
+  }, [items]);
+  return (
+    <div className={styles.finded}>
+      <div className={styles.finded_filterbar}>
+        <FilterBar data={data} changeData={setDataHandler} />
+      </div>
+      <div className={styles.finded_list}>
+        <ItemList data={items} />
+      </div>
     </div>
-    <div className={styles.finded_list}>
-      <ItemList
-        items={items}
-      />
-    </div>
-  </div>;
+  );
 };
 
 export default ProductsList;

@@ -48,7 +48,7 @@ const Search = () => {
       //   setItem(data);
       // }
     } else return;
-  }, [items]);
+  }, []);
   return (
     <Template>
       <div className={styles.main}>
@@ -72,9 +72,9 @@ const Search = () => {
 
             {items ? (
               <SearchContext.Provider
-                value={{ key: key, data: items, filterData: setItems }}
+                value={{ key: key }}
               >
-                <ProductsList />
+                <ProductsList data={items}/>
               </SearchContext.Provider>
             ) : (
               getEmpty(isSearched)

@@ -64,22 +64,20 @@ const ItemList = ({data}) => {
     },
   ];
 
-  // const lastProductIndex = currentPage * productsPerPage;
-  // const firstProductIndex = lastProductIndex - productsPerPage;
-  // const currentProduct = products.slice(firstProductIndex, lastProductIndex)
+  const lastProductIndex = currentPage * productsPerPage;
+  const firstProductIndex = lastProductIndex - productsPerPage;
+  const currentProduct = products.slice(firstProductIndex, lastProductIndex)
 
   const navigate = (number) => setCurrentPage(number);
 
   useEffect(() => {
     setProducts(data);
-    
-    console.log(data);
-  }, []);
+  }, [data]);
   useEffect(() => {
-    // const sorted = sort(data, sortedBy);
-    // setProducts(sorted);
+    const sorted = sort(data, sortedBy);
+    setProducts(sorted);
     setCurrentPage(1)
-  }, [sortedBy, data]);
+  }, [sortedBy]);
   return (
     <div>
       <div className={styles.dropMenu_wrapper}>
@@ -89,14 +87,14 @@ const ItemList = ({data}) => {
           value={getOption(sortedBy, sortOptions)}
           onChange={selectSortBy}
         />
-      {/* </div>
+      </div>
       <div className={styles.list}>
         <Products products={currentProduct} />
         <Pagination
           productsPerPage={productsPerPage}
           totalProducts={products.length}
           navigate={navigate}
-        /> */}
+        />
       </div>
     </div>
   );
