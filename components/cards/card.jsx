@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import styles from '../../styles/components/card.module.scss';
+// import { useSelector } from 'react-redux/es/hooks/useSelector';
 
 const Card = (props)=>{
     const { curencyImg, el, text } = props;
+    // const {} = useSelector(store=>store)
     const onClickHandler = (e) => {
       const target = e.target;
       if (target.classList[1] === styles.active) {
