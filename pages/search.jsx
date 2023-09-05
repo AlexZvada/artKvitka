@@ -1,80 +1,64 @@
-import { useEffect, useState, createContext } from "react";
-import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import Template from "../components/main/Template";
 import { serachPage } from "../library/library";
 import EmptySearch from "../components/search/emptySearch";
 import ProductsList from "../components/productList/productsList";
 import Container from "../components/main/Layout";
 import styles from "../styles/searchPage/search.module.scss";
-import cards from "../js/cards";
-
-export const SearchContext = createContext(null);
+import { useDispatch, useSelector } from "react-redux";
+import { setDataToShow } from "../store/redusers/dataSlice";
 
 const Search = () => {
-  const [key, setKey] = useState("");
-  const [items, setItems] = useState(null);
-  const [itemsToShow, setItemsToShow] = useState([]);
-  const [isSearched, setIsSearched] = useState(false);
-  const router = useRouter();
+  const dispatch = useDispatch();
+  const { lang } = useSelector((state) => state.global);
+  const [items, setItems] = useState(false);
+  const [isSearched, setIsSearched] = useState(false)
+  const [input, setInput] = useState('')
 
-  const getEmpty = (param) => {
-    if (!param) {
-      return <EmptySearch title={serachPage.noResult.started.title[key]} />;
+  const getEmpty = (isSearched) => {
+    if (!isSearched) {
+      return <EmptySearch title={serachPage.noResult.started.title[lang]} />;
     } else
       return (
         <EmptySearch
-          title={serachPage.noResult.seached.title[key]}
-          text={serachPage.noResult.seached.text[key]}
+          title={serachPage.noResult.seached.title[lang]}
+          text={serachPage.noResult.seached.text[lang]}
         />
       );
   };
+  const onInputChangeHandler = (e)=>{
+    setInput(e.target.value)
+  }
+
+  const onSubmitHandler = (e) =>{
+    e.preventDefault();
+
+  }
   useEffect(() => {
-    let lang = localStorage.getItem("lang");
-    setKey(lang);
-    if (router.asPath.split("?")[1]) {
-      setIsSearched(true);
-      setItems(cards);
-
-      // setItems(cards);
-      // console.log();
-      // const fetchData = await fetch('...', {
-
-      //   body: JSON.stringify(query.Search)
-      // })
-      // const data = await fetchData.json()
-      // let data;
-      // if (data) {
-      //   setItem(data);
-      // }
-    }
+    dispatch(setDataToShow());
+    setItems(true);
   }, []);
   return (
     <Template>
       <div className={styles.main}>
         <Container>
-          <h1 className={styles.title}>{serachPage.title[key]}</h1>
-          <span className={styles.path}>{serachPage.path[key]}</span>
+          <h1 className={styles.title}>{serachPage.title[lang]}</h1>
+          <span className={styles.path}>{serachPage.path[lang]}</span>
           <div className={styles.main_inner}>
-            <form className={styles.form} onSubmit={(e) => {e.pteventDefault(); setItems(cards)}}>
+            <form className={styles.form} onSubmit={onSubmitHandler}>
               <input
                 className={styles.input}
                 name="search"
                 type="text"
-                // value={input}
-                // onChange={onInputChange}
-                placeholder={serachPage.form.placeholder[key]}
+                value={input}
+                onChange={onInputChangeHandler}
+                placeholder={serachPage.form.placeholder[lang]}
               />
               <button className={styles.btn} type="submit">
-                {serachPage.form.searchBtn[key]}
+                {serachPage.form.searchBtn[lang]}
               </button>
             </form>
-            {items ? (
-              <SearchContext.Provider value={{ key: key }}>
-                <ProductsList data={items} />
-              </SearchContext.Provider>
-            ) : (
-              getEmpty(isSearched)
-            )}
+            {items ? <ProductsList /> : getEmpty(isSearched)}
           </div>
         </Container>
       </div>

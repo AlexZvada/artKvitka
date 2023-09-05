@@ -1,4 +1,4 @@
-@import '../variables';
+@import "../variables";
 .icons {
   display: inline-block;
   width: 30px;
@@ -11,18 +11,33 @@
 }
 .basket {
   background: center no-repeat url("../../images/header/shop_icon.svg");
-  
 }
 
 .favorites {
-    background: center no-repeat url('../../images/header/favorites_icon.svg');
+  background: center no-repeat url("../../images/header/favorites_icon.svg");
 }
 
 .account {
-    background: center no-repeat url('../../images/header/account.svg');
+  background: center no-repeat url("../../images/header/account.svg");
 }
 
 .dropMenu {
-  border:none !important;
+  border: none !important;
   padding: 0 30px 0 0 !important;
+}
+
+.btn_wrapper {
+  position: relative;
+}
+
+.btn {
+  position: absolute;
+  top: -10px;
+  left: 15px;
+  display: inline-block;
+  text-align: center;
+  padding: 5px 9px;
+  color: $white;
+  background-color: #237fa4;
+  border-radius: 50%;
 }

@@ -11,44 +11,15 @@ import {paint, poster, postcard, cup, shirt, bag, nft, digital, artist, paintIco
 
 import A from "../components/links/link";
 import Carousel from "../components/slider/slider";
-import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
 const Index = () => {
   const {lang} = useSelector(state => state.global)
-  const [input, setInput] = useState("");
-  // const router = useRouter();
-  // const submitHandler = (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData(e.target);
-  //   const data = Object.fromEntries(formData.entries());
-  //   if (!data.search) {
-  //     router.push("/search");
-  //   }else{
-  //     router.replace(`/search/?${data.search}`)
-  //   }
-  // };
-  // const onInputChange = (e) => {
-  //   setInput(e.target.value);
-  // };
+  const {data} = useSelector(state=> state.data)
+  // const [input, setInput] = useState("");
   return (
     <Template>
       <div className={styles.search}>
-        <Container>
-          {/* <form className={styles.form} onSubmit={submitHandler}>
-            <input
-              className={styles.input}
-              name="search"
-              type="text"
-              value={input}
-              onChange={onInputChange}
-              placeholder={mainPage.search.placeholder[lang]}
-            />
-            <button className={styles.btn} type="submit">
-              {mainPage.search.searchBtn[lang]}
-            </button>
-          </form> */}
-        </Container>
       </div>
       <div className={styles.categories_wrapper}>
         <Container>
@@ -112,7 +83,7 @@ const Index = () => {
       <div className={styles.novelity_wrapper}>
         <Container>
           <h2 className={styles.novelity_title}>{mainPage.novelties[lang]}</h2>
-          <Carousel array={cards} />
+          <Carousel array={data} />
         </Container>
       </div>
       <div className={styles.popular_wrapper}>

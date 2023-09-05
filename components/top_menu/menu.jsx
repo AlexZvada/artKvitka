@@ -1,20 +1,42 @@
 import styles from "../../styles/header/menu.module.scss";
 import A from "../links/link";
 import Image from "next/image";
-import dollar from "../../images/header/dollar.svg";
-import evro from "../../images/header/evro.svg";
-import hryvna from "../../images/header/hryvna.svg";
+import { dollar, evro, hryvna } from "../../images/index";
 import ua from "../../images/header/flag_ua.png";
 import en from "../../images/header/flag_en.png";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setLang, setCur } from "../../store/redusers/globalOptionsSlice";
+import {
+  setLang,
+  setCur,
+  setCource,
+} from "../../store/redusers/globalOptionsSlice";
 
 const Menu = () => {
   const { lang, cur } = useSelector((store) => store.global);
+  const { likedCount, inBucketCount } = useSelector((store) => store.card);
+  const [course, setCourse] = useState({});
+
   const dispatch = useDispatch();
+  async function getCurrentCourse() {
+    const fetchData = await fetch(
+      "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json"
+    );
+    const data = await fetchData.json();
+    const evro = data.find((el) => 
+      el.cc === "EUR"
+    );
+    const dollar = data.find((el) => 
+      el.cc === "USD"
+    );
+    setCourse( {
+      evro: dollar.rate / evro.rate,
+      hryvna: dollar.rate,
+      dollar: 1,
+    });
+  }
 
   const getOption = (key, options) => {
     const option = options.find((el) => el.value === key);
@@ -26,17 +48,18 @@ const Menu = () => {
       case "dollar":
         localStorage.setItem("cur", "dollar");
         dispatch(setCur("dollar"));
-        // location.reload();
+        dispatch(setCource(course.dollar));
         break;
       case "evro":
         localStorage.setItem("cur", "evro");
         dispatch(setCur("evro"));
-        // location.reload();
+        dispatch(setCource(course.evro));
         break;
       case "hryvna":
         localStorage.setItem("cur", "hryvna");
         dispatch(setCur("hryvna"));
-        // location.reload();
+        dispatch(setCource(course.hryvna));
+
       default:
         break;
     }
@@ -47,17 +70,14 @@ const Menu = () => {
       case "ru":
         localStorage.setItem("lang", "ru");
         dispatch(setLang("ru"));
-        // location.reload();
         break;
       case "ua":
         localStorage.setItem("lang", "ua");
         dispatch(setLang("ua"));
-        // location.reload();
         break;
       case "en":
         localStorage.setItem("lang", "en");
         dispatch(setLang("en"));
-        // location.reload();
       default:
         break;
     }
@@ -93,20 +113,21 @@ const Menu = () => {
     },
   ];
 
-  useEffect(()=>{
-    const lang = localStorage.getItem('lang');
-    const cur = localStorage.getItem('cur')
+  useEffect(() => {
+    const lang = localStorage.getItem("lang");
+    const cur = localStorage.getItem("cur");
     if (!lang) {
-      dispatch(setLang('ua'))
+      dispatch(setLang("ua"));
     }
     if (!cur) {
-      dispatch(setCur('hryvna'))
+      dispatch(setCur("hryvna"));
     }
-    if (lang&&cur) {
+    if (lang && cur) {
       dispatch(setLang(lang));
-      dispatch(setCur(cur))
+      dispatch(setCur(cur));
     }
-  },[])
+   getCurrentCourse();
+  }, []);
   return (
     <>
       <Dropdown
@@ -121,21 +142,31 @@ const Menu = () => {
         value={getOption(lang, langOptions)}
         onChange={selectLang}
       />
-      <A
-        href="/"
-        className={`${styles.icons} ${styles.basket}`}
-        id={"basket"}
-      ></A>
-      <A
-        href="/"
-        className={`${styles.icons} ${styles.favorites}`}
-        id={"favorites"}
-      ></A>
+      <span className={styles.btn_wrapper}>
+        <A
+          href="/"
+          className={`${styles.icons} ${styles.basket}`}
+          id={"basket"}
+        />
+        {inBucketCount > 0 ? (
+          <span className={styles.btn}>{inBucketCount}</span>
+        ) : null}
+      </span>
+      <span className={styles.btn_wrapper}>
+        <A
+          href="/favorites"
+          className={`${styles.icons} ${styles.favorites}`}
+          id={"favorites"}
+        />
+        {likedCount > 0 ? (
+          <span className={styles.btn}>{likedCount}</span>
+        ) : null}
+      </span>
       <A
         href="/"
         className={`${styles.icons} ${styles.account}`}
         id={"account"}
-      ></A>
+      />
     </>
   );
 };

@@ -1,11 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { dollar, hryvna, evro } from "../../images/index";
 
 const initialState = {
   lang: "",
   cur: "",
-  curImg:null,
+  curImg: null,
+  currentCource: 1,
 };
+
 
 export const globalSlice = createSlice({
   name: "global",
@@ -17,7 +19,7 @@ export const globalSlice = createSlice({
     },
     setCur: (state, action) => {
       state.cur = action.payload;
-      localStorage.setItem('cur', action.payload)
+      localStorage.setItem("cur", action.payload);
       switch (action.payload) {
         case "hryvna":
           state.curImg = hryvna;
@@ -32,9 +34,12 @@ export const globalSlice = createSlice({
           break;
       }
     },
+    setCource:(state, action)=>{
+      state.currentCource = action.payload
+    }
   },
 });
 
-export const {setLang, setCur } = globalSlice.actions;
+export const { setLang, setCur, setCource } = globalSlice.actions;
 
-export default globalSlice.reducer
+export default globalSlice.reducer;

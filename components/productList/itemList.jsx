@@ -1,18 +1,16 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Dropdown from "react-dropdown";
 import { itemListL } from "../../library/library";
 import styles from "../../styles/components/product_list/itemList.module.scss";
-import sort from "../../js/sortItems";
 import Pagination from "./pagination";
 import Products from "./products";
-import { SearchContext } from "../../pages/search";
+import { useSelector } from "react-redux";
 
 
 
 const ItemList = ({data}) => {
-  const { key } = useContext(SearchContext);
+  const {lang} = useSelector(store=>store.global)
   const [sortedBy, setSortedBy] = useState("recomended");
-  const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(12);
 
@@ -44,42 +42,37 @@ const ItemList = ({data}) => {
   const sortOptions = [
     {
       value: "recomended",
-      label: `${itemListL.sort.recomended[key]}`,
+      label: `${itemListL.sort.recomended[lang]}`,
     },
     {
       value: "oldFirst",
-      label: `${itemListL.sort.old[key]}`,
+      label: `${itemListL.sort.old[lang]}`,
     },
     {
       value: "newFirst",
-      label: `${itemListL.sort.new[key]}`,
+      label: `${itemListL.sort.new[lang]}`,
     },
     {
       value: "cheapFirst",
-      label: `${itemListL.sort.cheap[key]}`,
+      label: `${itemListL.sort.cheap[lang]}`,
     },
     {
       value: "expenciveFirst",
-      label: `${itemListL.sort.expencive[key]}`,
+      label: `${itemListL.sort.expencive[lang]}`,
     },
   ];
 
   const lastProductIndex = currentPage * productsPerPage;
   const firstProductIndex = lastProductIndex - productsPerPage;
-  const currentProduct = products.slice(firstProductIndex, lastProductIndex)
+  const currentProduct = data.slice(firstProductIndex, lastProductIndex);
 
   const navigate = (number) => setCurrentPage(number);
 
   useEffect(() => {
-    setProducts(data);
+    setCurrentPage(1);
   }, [data]);
-  useEffect(() => {
-    const sorted = sort(data, sortedBy);
-    setProducts(sorted);
-    setCurrentPage(1)
-  }, [sortedBy, data]);
   return (
-    <div id="start">
+    <div>
       <div className={styles.dropMenu_wrapper}>
         <Dropdown
           controlClassName={styles.dropMenu}
@@ -92,7 +85,7 @@ const ItemList = ({data}) => {
         <Products products={currentProduct} />
         <Pagination
           productsPerPage={productsPerPage}
-          totalProducts={products.length}
+          totalProducts={data.length}
           navigate={navigate}
         />
       </div>

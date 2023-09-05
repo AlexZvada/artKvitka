@@ -1,52 +1,37 @@
 import { useEffect, useState } from "react";
 import { filterBar } from "../../library/library";
 import styles from "../../styles/components/product_list/filterMenu.module.scss";
+import {
+  filter,
+  addDependency,
+  removeDependency,
+} from "../../store/redusers/dataSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-let arrayOfFilters = [];
-export const MainCheckbox = (props) => {
-  const { lang, data, setData }= props
-  const dataToSort = [...data];
-  const key = lang;
-  const [filterParams, setFilterParams] = useState([]);
 
-  const filterData = (data, params) => {
-    let filteredData = [];
-    if (!params[0]) {
-      filteredData = data;
-      return filteredData
-    }
-    params.forEach((param) => {
-      data.forEach((item) => {
-        if (param === item.category) {
-          filteredData.push(item);
-        }
-      });
-    });
-    return filteredData;
-  };
+export const MainCheckbox = () => {
+  const {lang} = useSelector(state=> state.global)
+  const { arrayOfDependencies} = useSelector(state=> state.data);
+  const dispatch = useDispatch()
 
   const onChange = (e) => {
     if (e.target.checked) {
-      arrayOfFilters.push(e.target.value);
-      let newArray = [...arrayOfFilters];
-      setFilterParams(newArray);
+      dispatch(addDependency(e.target.value));
     }
     if (!e.target.checked) {
-      arrayOfFilters = arrayOfFilters.filter((el) => el !== e.target.value);
-      setFilterParams(arrayOfFilters);
+      dispatch(removeDependency(e.target.value))
     }
   };
   useEffect(() => {
-    let a = filterData(dataToSort, filterParams);
-    setData(a);
-  }, [filterParams, data]);
+    dispatch(filter())
+  }, [arrayOfDependencies]);
   return (
     <div>
-      <h2 className={styles.title}>{filterBar.title[key]}</h2>
+      <h2 className={styles.title}>{filterBar.title[lang]}</h2>
       <div className={styles.subtitle_wrapper}>
-        <h3 className={styles.subtitle}>{filterBar.price.title[key]}</h3>
-        <span className={styles.price_from}>{filterBar.price.from[key]}</span>
-        <span className={styles.price_to}>{filterBar.price.to[key]}</span>
+        <h3 className={styles.subtitle}>{filterBar.price.title[lang]}</h3>
+        <span className={styles.price_from}>{filterBar.price.from[lang]}</span>
+        <span className={styles.price_to}>{filterBar.price.to[lang]}</span>
       </div>
       <div className={styles.price_wrapper}>
         <input
@@ -63,31 +48,31 @@ export const MainCheckbox = (props) => {
           className={styles.price_input}
         />
       </div>
-      <form className={styles.form} onClick={onChange}>
-        <h3 className={styles.subtitle}>{filterBar.categories.title[key]}</h3>
+      <form className={styles.form} onChange={onChange}>
+        <h3 className={styles.subtitle}>{filterBar.categories.title[lang]}</h3>
         <label className={styles.checkbox}>
           <input type="checkbox" name="categories" value="paintings" />
-          {filterBar.categories.paintins[key]}
+          {filterBar.categories.paintins[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="categories" value="posters" />
-          {filterBar.categories.posters[key]}
+          {filterBar.categories.posters[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="categories" value="postcards" />
-          {filterBar.categories.postcards[key]}
+          {filterBar.categories.postcards[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="categories" value="caps" />
-          {filterBar.categories.cups[key]}
+          {filterBar.categories.cups[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="categories" value="t-shorts" />
-          {filterBar.categories.tShorts[key]}
+          {filterBar.categories.tShorts[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="categories" value="bags" />
-          {filterBar.categories.bags[key]}
+          {filterBar.categories.bags[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="categories" value="nft" />
@@ -95,187 +80,187 @@ export const MainCheckbox = (props) => {
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="categories" value="digital" />
-          {filterBar.categories.digital[key]}
+          {filterBar.categories.digital[lang]}
         </label>
       </form>
     </div>
   );
 };
-export const ExpandedCheckbox = ({ lang, onClick }) => {
-  const key = lang;
+export const ExpandedCheckbox = () => {
+  const {lang} = useSelector(state=> state.global)
   return (
     <div className={styles.form_wrapper}>
       <form className={styles.form}>
-        <h3 className={styles.subtitle}>{filterBar.style.title[key]}</h3>
+        <h3 className={styles.subtitle}>{filterBar.style.title[lang]}</h3>
         <label className={styles.checkbox}>
           <input type="checkbox" name="styles" value="abstract" />
-          {filterBar.style.abstract[key]}
+          {filterBar.style.abstract[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="styles" value="minimalism" />
-          {filterBar.style.minimalism[key]}
+          {filterBar.style.minimalism[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="styles" value="surrealism" />
-          {filterBar.style.surrealism[key]}
+          {filterBar.style.surrealism[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="styles" value="stillLife" />
-          {filterBar.style.stillLife[key]}
+          {filterBar.style.stillLife[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="styles" value="realism" />
-          {filterBar.style.realism[key]}
+          {filterBar.style.realism[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="styles" value="illustration" />
-          {filterBar.style.illustration[key]}
+          {filterBar.style.illustration[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="styles" value="modern" />
-          {filterBar.style.modern[key]}
+          {filterBar.style.modern[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="styles" value="figurative" />
-          {filterBar.style.figurative[key]}
+          {filterBar.style.figurative[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="styles" value="portrets" />
-          {filterBar.style.portrets[key]}
+          {filterBar.style.portrets[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="styles" value="popart" />
-          {filterBar.style.popArt[key]}
+          {filterBar.style.popArt[lang]}
         </label>
       </form>
       <form className={styles.form}>
-        <h3 className={styles.subtitle}>{filterBar.paints.title[key]}</h3>
+        <h3 className={styles.subtitle}>{filterBar.paints.title[lang]}</h3>
         <label className={styles.checkbox}>
           <input type="checkbox" name="paints" value="akvarel" />
-          {filterBar.paints.akvarel[key]}
+          {filterBar.paints.akvarel[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="paints" value="acrilic" />
-          {filterBar.paints.acrilic[key]}
+          {filterBar.paints.acrilic[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="paints" value="oil" />
-          {filterBar.paints.oil[key]}
+          {filterBar.paints.oil[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="paints" value="ink" />
-          {filterBar.paints.ink[key]}
+          {filterBar.paints.ink[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="paints" value="gouashe" />
-          {filterBar.paints.gouashe[key]}
+          {filterBar.paints.gouashe[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="paints" value="graphite" />
-          {filterBar.paints.graphite[key]}
+          {filterBar.paints.graphite[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="paints" value="coal" />
-          {filterBar.paints.coal[key]}
+          {filterBar.paints.coal[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="paints" value="enamel" />
-          {filterBar.paints.enamel[key]}
+          {filterBar.paints.enamel[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="paints" value="airbrush" />
-          {filterBar.paints.airbrush[key]}
+          {filterBar.paints.airbrush[lang]}
         </label>
       </form>
       <form className={styles.form}>
-        <h3 className={styles.subtitle}>{filterBar.material.title[key]}</h3>
+        <h3 className={styles.subtitle}>{filterBar.material.title[lang]}</h3>
         <label className={styles.checkbox}>
           <input type="checkbox" name="material" value="canvas" />
-          {filterBar.material.canvas[key]}
+          {filterBar.material.canvas[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="material" value="paper" />
-          {filterBar.material.paper[key]}
+          {filterBar.material.paper[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="material" value="linenCanvas" />
-          {filterBar.material.canvas.linen[key]}
+          {filterBar.material.canvas.linen[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="material" value="cotonCanvas" />
-          {filterBar.material.canvas.coton[key]}
+          {filterBar.material.canvas.coton[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="material" value="silkCanvas" />
-          {filterBar.material.canvas.silk[key]}
+          {filterBar.material.canvas.silk[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="material" value="paintingCanvas" />
-          {filterBar.material.canvas.painting[key]}
+          {filterBar.material.canvas.painting[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="material" value="stadyCanvas" />
-          {filterBar.material.canvas.stady[key]}
+          {filterBar.material.canvas.stady[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="material" value="akvarelPaper" />
-          {filterBar.material.paper.akvarel[key]}
+          {filterBar.material.paper.akvarel[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="material" value="ricePaper" />
-          {filterBar.material.paper.rice[key]}
+          {filterBar.material.paper.rice[lang]}
         </label>
       </form>
       <form className={styles.form}>
-        <h3 className={styles.subtitle}>{filterBar.orientation.title[key]}</h3>
+        <h3 className={styles.subtitle}>{filterBar.orientation.title[lang]}</h3>
         <label className={styles.checkbox}>
           <input type="checkbox" name="orientation" value="suare" />
-          {filterBar.orientation.square[key]}{" "}
+          {filterBar.orientation.square[lang]}{" "}
           <span className={`${styles.orientation_img} ${styles.square}`}></span>
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="orientation" value="vertical" />
-          {filterBar.orientation.vertical[key]}
+          {filterBar.orientation.vertical[lang]}
           <span
             className={`${styles.orientation_img} ${styles.vertical}`}
           ></span>
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="orientation" value="horisontal" />
-          {filterBar.orientation.horisontal[key]}{" "}
+          {filterBar.orientation.horisontal[lang]}{" "}
           <span
             className={`${styles.orientation_img} ${styles.horisontal}`}
           ></span>
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="orientation" value="panoram" />
-          {filterBar.orientation.panoram[key]}{" "}
+          {filterBar.orientation.panoram[lang]}{" "}
           <span
             className={`${styles.orientation_img} ${styles.panoram}`}
           ></span>
         </label>
       </form>
       <form className={styles.form}>
-        <h3 className={styles.subtitle}>{filterBar.size.title[key]}</h3>
+        <h3 className={styles.subtitle}>{filterBar.size.title[lang]}</h3>
         <label className={styles.checkbox}>
           <input type="checkbox" name="size" value="small" />
-          {filterBar.size.small[key]}
+          {filterBar.size.small[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="size" value="medium" />
-          {filterBar.size.medium[key]}
+          {filterBar.size.medium[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="size" value="large" />
-          {filterBar.size.large[key]}
+          {filterBar.size.large[lang]}
         </label>
         <label className={styles.checkbox}>
           <input type="checkbox" name="size" value="oversize" />
-          {filterBar.size.extraLarge[key]}
+          {filterBar.size.extraLarge[lang]}
         </label>
       </form>
       <span className={styles.more} onClick={onClick}>
-        {filterBar.less[key]}
+        {filterBar.less[lang]}
       </span>
     </div>
   );

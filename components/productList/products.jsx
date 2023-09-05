@@ -1,5 +1,4 @@
 import Card from "../cards/card";
-import { dollar } from "../../images/index";
 import styles from '../../styles/components/card.module.scss'
 
 const Products = ({ products }) => {
@@ -7,7 +6,7 @@ const Products = ({ products }) => {
     <div className={styles.catalog_card_wrapper}>
       {products.map((el, i) => (
         <div className={styles.catalog_card} key={i}>
-          <Card curencyImg={dollar} el={el} text={"buy"} />
+          <Card el={el} />
         </div>
       ))}
     </div>
