@@ -129,8 +129,9 @@ table {
   border-spacing: 0;
 }
 
-* {
-  font-family: "Monsterrat";
+p, a, span
+ {
+  font-family: "Monsterrat", sans-serif;
   font-size: $standart;
   box-sizing: border-box;
 }

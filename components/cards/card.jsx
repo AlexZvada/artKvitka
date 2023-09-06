@@ -12,20 +12,18 @@ import {  useState } from "react";
 
 const Card = ({ el }) => {
   const dispatch = useDispatch();
-  const { curImg, lang, courentCource } = useSelector((state) => state.global);
-  const [card, setCatd] = useState(el)
+  const { curImg, lang, currentCource } = useSelector((state) => state.global);
+  const [card, setCard] = useState(el)
   const addLikekHandler = (e) => {
     const target = e.target;
     if (target.classList[1] === styles.active) {
       dispatch(toglleLike(el.id));
       dispatch(removeLike(el.id));
       target.classList.remove(styles.active);
-      // console.log('remove', el);
     } else {
       dispatch(toglleLike(el.id));
       dispatch(addLike(el));
       target.classList.add(styles.active);
-      // console.log("add", el);
     }
   };
   const addtoBucketHandler = () => {
@@ -53,7 +51,7 @@ const Card = ({ el }) => {
                 priority={true}
               />
             )}
-            <span className={styles.price}>{+card.price * courentCource}</span>
+            <span className={styles.price}>{+card.price * currentCource}</span>
           </div>
           <div className={styles.btns_wrapper}>
             <button

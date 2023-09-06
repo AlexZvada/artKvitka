@@ -34,12 +34,12 @@ export const globalSlice = createSlice({
           break;
       }
     },
-    setCource:(state, action)=>{
-      state.currentCource = action.payload
-    }
+    setCurrentCource: (state, action) => {
+      state.currentCource = action.payload;
+    },
   },
 });
 
-export const { setLang, setCur, setCource } = globalSlice.actions;
+export const { setLang, setCur, setCurrentCource } = globalSlice.actions;
 
 export default globalSlice.reducer;

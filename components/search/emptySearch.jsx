@@ -1,4 +1,4 @@
-import styles from '../../styles/searchPage/search.module.scss'
+import styles from '../../styles/pages/pages.module.scss'
 const EmptySearch = ({title, text}) => {
   return (
     <div className={styles.noresult}>

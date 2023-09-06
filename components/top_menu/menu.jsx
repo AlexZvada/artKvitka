@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setLang,
   setCur,
-  setCource,
+  setCurrentCource,
 } from "../../store/redusers/globalOptionsSlice";
 
 const Menu = () => {
@@ -31,11 +31,11 @@ const Menu = () => {
     const dollar = data.find((el) => 
       el.cc === "USD"
     );
-    setCourse( {
+    return {
       evro: dollar.rate / evro.rate,
       hryvna: dollar.rate,
       dollar: 1,
-    });
+    };
   }
 
   const getOption = (key, options) => {
@@ -48,17 +48,17 @@ const Menu = () => {
       case "dollar":
         localStorage.setItem("cur", "dollar");
         dispatch(setCur("dollar"));
-        dispatch(setCource(course.dollar));
+        dispatch(setCurrentCource(course.dollar));
         break;
       case "evro":
         localStorage.setItem("cur", "evro");
         dispatch(setCur("evro"));
-        dispatch(setCource(course.evro));
+        dispatch(setCurrentCource(course.evro));
         break;
       case "hryvna":
         localStorage.setItem("cur", "hryvna");
         dispatch(setCur("hryvna"));
-        dispatch(setCource(course.hryvna));
+        dispatch(setCurrentCource(course.hryvna));
 
       default:
         break;
@@ -113,7 +113,10 @@ const Menu = () => {
     },
   ];
 
-  useEffect(() => {
+  useEffect( () => {
+    // const c =  getCurrentCourse()
+    
+
     const lang = localStorage.getItem("lang");
     const cur = localStorage.getItem("cur");
     if (!lang) {
@@ -126,7 +129,7 @@ const Menu = () => {
       dispatch(setLang(lang));
       dispatch(setCur(cur));
     }
-   getCurrentCourse();
+    
   }, []);
   return (
     <>

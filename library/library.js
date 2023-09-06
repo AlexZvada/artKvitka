@@ -641,4 +641,121 @@ export const itemCard = {
     en: "Buy",
   },
 };
+
+export const catalog = {
+  title: {
+    ru: "Каталог",
+    ua: "Каталог",
+    en: "Catalog",
+  },
+  path: {
+    ru: "Главная / Каталог",
+    ua: "Головна / Каталог",
+    en: "Main / Catalog",
+  },
+};
+export const about = {
+  title: {
+    ru: "О художнице",
+    ua: "Про художницю",
+    en: "About artist",
+  },
+  path: {
+    ru: "Главная / О художнице",
+    ua: "Головна / Про художницю",
+    en: "Main / About artist",
+  },
+  artist: {
+    ru: "Надежда Парамей",
+    ua: "Надія Парамей",
+    en: "Nadia Paramey",
+  },
+};
+export const contacts = {
+  title: {
+    ru: "Контакты",
+    ua: "Контакти",
+    en: "Contacts",
+  },
+  path: {
+    ru: "Главная / Контакты",
+    ua: "Головна / Контакти",
+    en: "Main / Contacts",
+  },
+  descTitle: {
+    ru: "Мы всегда на связи!",
+    ua: "Ми завжди на звязку!",
+    en: "We are always in touch!",
+  },
+  descPhone: {
+    ru: "Связаться с нами вы всегда можете по телефону:",
+    ua: "Зв'язатись з нами ви завжди можєете за телефоном:",
+    en: "You can always contact us by phone:",
+  },
+  descrText: {
+    ru: "Так же вы можете связаться с нами с помощью формы на этой странице",
+    ua: "Також ви можете звязатись з нами за допомогою форми на цій сторінці",
+    en: "You can also contact us using the form on this page.",
+  },
+  descrPlatforms: {
+    ru: "Мы на других площадках:",
+    ua: "Ми на інших сайтах:",
+    en: "We are on other sites:",
+  },
+  form: {
+    name: {
+      lable: {
+        ru: "Имя",
+        ua: "Ім'я",
+        en: "Name",
+      },
+      placeholder: {
+        ru: "Введите данные",
+        ua: "Введіть дані",
+        en: "Enter name",
+      },
+    },
+    email: {
+      lable: {
+        ru: "Email",
+        ua: "Email",
+        en: "Email",
+      },
+      placeholder: {
+        ru: "Введите данные",
+        ua: "Введіть дані",
+        en: "Enter email",
+      },
+    },
+    theme: {
+      lable: {
+        ru: "Тема сообщения",
+        ua: "Темф повідомлення",
+        en: "Theme",
+      },
+      placeholder: {
+        ru: "Введите данные",
+        ua: "Введіть дані",
+        en: "Enter theme",
+      },
+    },
+    text: {
+      lable: { 
+        ru: "Текст сообщения", 
+        ua: "Текст повідомлення", 
+        en: "Text" 
+      },
+      placeholder: {
+        ru: "Введите данные",
+        ua: "Введіть дані",
+        en: "Enter text",
+      },
+    },
+    btn:{
+      ru:'Отправить',
+      ua:'Відправити',
+      en:'Send'
+    }
+  },
+};
 export default CompLng;

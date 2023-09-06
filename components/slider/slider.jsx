@@ -24,7 +24,6 @@ function NextArrow({ currentSlide, slideCount, ...props }) {
     />
   );
 }
-
 function PrevArrow({ currentSlide, slideCount, ...props }) {
   return (
     <div
@@ -46,33 +45,25 @@ function PrevArrow({ currentSlide, slideCount, ...props }) {
 }
 const getPrice = (price, course) => {
   let total = price * course;
-
   return total;
 };
-
 const Carousel = ({ array }) => {
+  console.log('incoming',array);
   const { curImg, lang, cur } = useSelector((store) => store.global);
-
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
   };
-
-
   return (
     <Slider {...settings}>
+      {console.log('rendering', array)}
       {array.map((el, index) => {
-        return (
-          <Card
-            el={el}
-            key={index}
-          />
-        );
+        return <Card el={el} key={index} />;
       })}
     </Slider>
   );

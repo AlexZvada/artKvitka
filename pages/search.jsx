@@ -4,13 +4,14 @@ import { serachPage } from "../library/library";
 import EmptySearch from "../components/search/emptySearch";
 import ProductsList from "../components/productList/productsList";
 import Container from "../components/main/Layout";
-import styles from "../styles/searchPage/search.module.scss";
+import styles from "../styles/pages/pages.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { setDataToShow } from "../store/redusers/dataSlice";
 
 const Search = () => {
   const dispatch = useDispatch();
   const { lang } = useSelector((state) => state.global);
+  const {toShow} = useSelector(state=> state.data)
   const [items, setItems] = useState(false);
   const [isSearched, setIsSearched] = useState(false)
   const [input, setInput] = useState('')
@@ -32,11 +33,10 @@ const Search = () => {
 
   const onSubmitHandler = (e) =>{
     e.preventDefault();
-
+    setItems(true);
   }
   useEffect(() => {
     dispatch(setDataToShow());
-    setItems(true);
   }, []);
   return (
     <Template>
@@ -58,7 +58,7 @@ const Search = () => {
                 {serachPage.form.searchBtn[lang]}
               </button>
             </form>
-            {items ? <ProductsList /> : getEmpty(isSearched)}
+            {items ? <ProductsList data={toShow} /> : getEmpty(isSearched)}
           </div>
         </Container>
       </div>
