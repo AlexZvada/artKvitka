@@ -25,12 +25,8 @@ const Menu = () => {
       "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json"
     );
     const data = await fetchData.json();
-    const evro = data.find((el) => 
-      el.cc === "EUR"
-    );
-    const dollar = data.find((el) => 
-      el.cc === "USD"
-    );
+    const evro = data.find((el) => el.cc === "EUR");
+    const dollar = data.find((el) => el.cc === "USD");
     return {
       evro: dollar.rate / evro.rate,
       hryvna: dollar.rate,
@@ -113,23 +109,22 @@ const Menu = () => {
     },
   ];
 
-  useEffect( () => {
+  useEffect(() => {
     // const c =  getCurrentCourse()
-    
 
-    const lang = localStorage.getItem("lang");
-    const cur = localStorage.getItem("cur");
-    if (!lang) {
+    const language = localStorage.getItem("lang");
+    const currency = localStorage.getItem("cur");
+    if (!language && !currency) {
       dispatch(setLang("ua"));
+      dispatch(setCur("hryvna"));
+      return;
+    }
+    if (!lang) {
+      dispatch(setLang(language));
     }
     if (!cur) {
-      dispatch(setCur("hryvna"));
+      dispatch(setCur(currency));
     }
-    if (lang && cur) {
-      dispatch(setLang(lang));
-      dispatch(setCur(cur));
-    }
-    
   }, []);
   return (
     <>

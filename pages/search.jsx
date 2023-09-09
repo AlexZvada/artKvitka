@@ -37,6 +37,7 @@ const Search = () => {
   }
   useEffect(() => {
     dispatch(setDataToShow());
+    return()=>{}
   }, []);
   return (
     <Template>

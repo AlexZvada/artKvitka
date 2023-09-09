@@ -38,6 +38,59 @@ export const dataSlice = createSlice({
         });
       });
     },
+    sort:(state, action)=>{
+      switch (action.payload) {
+        case "recomended":
+          state.toShow = state.toShow
+          break;
+        case "oldFirst":
+          state.toShow.sort((a, b) => {
+            if (new Date(a.date) > new Date(b.date)) {
+              return 1;
+            }
+            if (new Date(a.date) < new Date(b.date)) {
+              return -1;
+            }
+            return 0;
+          });
+          break;
+        case "newFirst":
+          state.toShow.sort((a, b) => {
+            if (new Date(a.date) < new Date(b.date)) {
+              return 1;
+            }
+            if (new Date(a.date) > new Date(b.date)) {
+              return -1;
+            }
+            return 0;
+          });
+          break;
+        case "cheapFirst":
+          state.toShow.sort((a, b) => {
+            if (a.price > b.price) {
+              return 1;
+            }
+            if (a.price < b.price) {
+              return -1;
+            }
+            return 0;
+          });
+          break;
+        case "expenciveFirst":
+          state.toShow.sort((a, b) => {
+            if (a.price < b.price) {
+              return 1;
+            }
+            if (a.price > b.price) {
+              return -1;
+            }
+            return 0;
+          });
+          break;
+        default:
+          break;
+      }
+    },
     setDataToShow: (state) => {
       state.toShow = [...state.data];
     },
@@ -83,7 +136,16 @@ export const dataSlice = createSlice({
   },
 });
 
-export const { filter, setDataToShow, addDependency, removeDependency, toglleLike } =
-  dataSlice.actions;
+export const {
+  filter,
+  setDataToShow,
+  addDependency,
+  removeDependency,
+  toglleLike,
+  sort,
+} = dataSlice.actions;
 
 export default dataSlice.reducer;
+
+
+// import cards from "./cards";

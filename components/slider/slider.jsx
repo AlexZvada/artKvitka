@@ -48,7 +48,6 @@ const getPrice = (price, course) => {
   return total;
 };
 const Carousel = ({ array }) => {
-  console.log('incoming',array);
   const { curImg, lang, cur } = useSelector((store) => store.global);
   const settings = {
     dots: false,
@@ -61,7 +60,6 @@ const Carousel = ({ array }) => {
   };
   return (
     <Slider {...settings}>
-      {console.log('rendering', array)}
       {array.map((el, index) => {
         return <Card el={el} key={index} />;
       })}

@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Dropdown from "react-dropdown";
 import { itemListL } from "../../library/library";
 import styles from "../../styles/components/product_list/itemList.module.scss";
 import Pagination from "./pagination";
 import Products from "./products";
 import { useSelector } from "react-redux";
+import sort from "../../js/sortItems";
 
-
-
-const ItemList = ({data}) => {
-  const {lang} = useSelector(store=>store.global)
+const ItemList = ({ data }) => {
+  const { lang } = useSelector((store) => store.global);
+  const [products, setProducts] = useState([]);
   const [sortedBy, setSortedBy] = useState("recomended");
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(12);
@@ -61,16 +61,21 @@ const ItemList = ({data}) => {
       label: `${itemListL.sort.expencive[lang]}`,
     },
   ];
-
+  const navigate = (number) => setCurrentPage(number);
   const lastProductIndex = currentPage * productsPerPage;
   const firstProductIndex = lastProductIndex - productsPerPage;
-  const currentProduct = data.slice(firstProductIndex, lastProductIndex);
-
-  const navigate = (number) => setCurrentPage(number);
+  const currentProduct = useMemo(
+    () => data.slice(firstProductIndex, lastProductIndex),
+    [data, lastProductIndex, firstProductIndex]
+  );
 
   useEffect(() => {
+    const toShow = sort(currentProduct, sortedBy);
+    setProducts(toShow);
+  }, [sortedBy, data]);
+  useEffect(() => {
     setCurrentPage(1);
-  }, [data]);
+  }, [products]);
   return (
     <div>
       <div className={styles.dropMenu_wrapper}>
@@ -82,7 +87,8 @@ const ItemList = ({data}) => {
         />
       </div>
       <div className={styles.list}>
-        <Products products={currentProduct} />
+        {console.log(products)}
+        {/* <Products products={products} /> */}
         <Pagination
           productsPerPage={productsPerPage}
           totalProducts={data.length}
